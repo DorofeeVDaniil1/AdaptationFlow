@@ -22,43 +22,22 @@ import java.util.UUID;
 public class SupportRequest extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -3469565809643504352L;
-    private UUID id;
-
-    private SysUser user;
-
-    private String question;
-
-    private String answer;
-
-    private String status;
-
-    private OffsetDateTime answeredAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @Column(name = "question", nullable = false, length = Integer.MAX_VALUE)
-    protected String getQuestion() {
-        return question;
-    }
+    private String question;
 
     @Column(name = "answer", length = Integer.MAX_VALUE)
-    protected String getAnswer() {
-        return answer;
-    }
+    private String answer;
 
     @Column(name = "status", nullable = false, length = 20)
-    protected String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Column(name = "answered_at")
-    protected OffsetDateTime getAnsweredAt() {
-        return answeredAt;
-    }
+    private OffsetDateTime answeredAt;
 
 }

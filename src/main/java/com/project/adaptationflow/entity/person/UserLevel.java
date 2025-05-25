@@ -22,42 +22,20 @@ import java.util.UUID;
 public class UserLevel extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -7629891876657492716L;
-    private UUID id;
-
-    private String title;
-
-    private Integer minPoints;
-
-    private Integer maxPoints;
-
-    private String description;
-
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
-
 
     @Column(name = "title", nullable = false, length = 100)
-    protected String getTitle() {
-        return title;
-    }
+    private String title;
 
     @Column(name = "min_points", nullable = false)
-    protected Integer getMinPoints() {
-        return minPoints;
-    }
+    private Integer minPoints;
 
     @Column(name = "max_points")
-    protected Integer getMaxPoints() {
-        return maxPoints;
-    }
+    private Integer maxPoints;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
-    protected String getDescription() {
-        return description;
-    }
+    private String description;
 
     @OneToMany(mappedBy = "userLevel")
-    protected Set<SysUser> getSysUsers() {
-        return sysUsers;
-    }
+    private Set<SysUser> sysUsers = new LinkedHashSet<>();
 
 }

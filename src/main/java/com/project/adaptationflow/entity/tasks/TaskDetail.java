@@ -23,51 +23,30 @@ import java.util.UUID;
 public class TaskDetail extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -6126321772207161422L;
-    private UUID id;
-
-    private Task task;
-
-    private String name;
-
-    private String description;
-
-    private String status;
-
-    private Set<Progress> progresses = new LinkedHashSet<>();
-
-    private Set<TaskDetailAdditionalInfo> taskDetailAdditionalInfos = new LinkedHashSet<>();
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "task_id", nullable = false)
-    protected Task getTask() {
-        return task;
-    }
+    private Task task;
+
 
     @Column(name = "name", nullable = false)
-    protected String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
-    protected String getDescription() {
-        return description;
-    }
+    private String description;
+
 
     @Column(name = "status", nullable = false, length = 50)
-    protected String getStatus() {
-        return status;
-    }
+    private String status;
+
 
     @OneToMany(mappedBy = "detail")
-    protected Set<Progress> getProgresses() {
-        return progresses;
-    }
+    private Set<Progress> progresses = new LinkedHashSet<>();
+
 
     @OneToMany(mappedBy = "taskDetail")
-    protected Set<TaskDetailAdditionalInfo> getTaskDetailAdditionalInfos() {
-        return taskDetailAdditionalInfos;
-    }
+    private Set<TaskDetailAdditionalInfo> taskDetailAdditionalInfos = new LinkedHashSet<>();
+
 
 }

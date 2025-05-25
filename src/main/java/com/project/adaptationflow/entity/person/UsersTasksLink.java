@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
@@ -24,60 +25,35 @@ import java.util.Set;
         @Index(name = "idx_users_tasks_link_task_id", columnList = "task_id")
 })
 public class UsersTasksLink implements Serializable {
+    @Serial
     private static final long serialVersionUID = -2668222496441016601L;
-    private UsersTasksLinkId id;
-
-    private SysUser user;
-
-    private Task task;
-
-    private OffsetDateTime assignedAt;
-
-    private String status;
-
-    private OffsetDateTime dueDate;
-
-    private Set<Progress> progresses = new LinkedHashSet<>();
 
     @EmbeddedId
-    protected UsersTasksLinkId getId() {
-        return id;
-    }
+    private UsersTasksLinkId id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @MapsId("taskId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "task_id", nullable = false)
-    protected Task getTask() {
-        return task;
-    }
+    private Task task;
 
     @Column(name = "assigned_at", nullable = false)
-    protected OffsetDateTime getAssignedAt() {
-        return assignedAt;
-    }
+    private OffsetDateTime assignedAt;
 
     @Column(name = "status", nullable = false, length = 20)
-    protected String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Column(name = "due_date")
-    protected OffsetDateTime getDueDate() {
-        return dueDate;
-    }
+    private OffsetDateTime dueDate;
+
 
     @OneToMany(mappedBy = "usersTasksLink")
-    protected Set<Progress> getProgresses() {
-        return progresses;
-    }
+    private Set<Progress> progresses = new LinkedHashSet<>();
 
 }

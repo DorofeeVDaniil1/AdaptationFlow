@@ -9,6 +9,12 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_achievement"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
             <column name="code" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
@@ -26,6 +32,12 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_anketa"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
             <column name="user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
@@ -64,6 +76,12 @@
             <column name="answer_text" type="text">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-5" author="dandy (generated)">
@@ -74,9 +92,12 @@
             <column name="name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="config" type="jsonb">
-                <constraints nullable="false"/>
-            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-6" author="dandy (generated)">
@@ -90,6 +111,12 @@
             <column name="answer" type="text">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-7" author="dandy (generated)">
@@ -106,7 +133,12 @@
             <column name="remote_entity" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="mapping" type="jsonb"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-8" author="dandy (generated)">
@@ -120,13 +152,16 @@
             <column name="type" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="payload" type="jsonb">
-                <constraints nullable="false"/>
-            </column>
             <column name="sent_at" type="timestamp"/>
             <column name="read" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-9" author="dandy (generated)">
@@ -138,6 +173,12 @@
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-10" author="dandy (generated)">
@@ -158,6 +199,12 @@
             <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-11" author="dandy (generated)">
@@ -175,6 +222,12 @@
             <column name="points" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-12" author="dandy (generated)">
@@ -188,6 +241,12 @@
             <column name="location" type="text"/>
             <column name="start_date" type="DATE"/>
             <column name="end_date" type="DATE"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-13" author="dandy (generated)">
@@ -207,6 +266,12 @@
             </column>
             <column name="approved_by" type="UUID"/>
             <column name="approved_at" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-14" author="dandy (generated)">
@@ -223,6 +288,12 @@
             <column name="assignment_task" type="UUID">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-15" author="dandy (generated)">
@@ -236,6 +307,12 @@
             <column name="is_active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-16" author="dandy (generated)">
@@ -247,6 +324,12 @@
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-17" author="dandy (generated)">
@@ -265,6 +348,12 @@
                 <constraints nullable="false"/>
             </column>
             <column name="answered_at" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-18" author="dandy (generated)">
@@ -300,6 +389,12 @@
             </column>
             <column name="last_login_date" type="timestamp"/>
             <column name="user_level_id" type="UUID"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-20" author="dandy (generated)">
@@ -317,6 +412,12 @@
             <column name="status" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-21" author="dandy (generated)">
@@ -330,9 +431,15 @@
             <column name="document_url" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="category" type="task_info_category(0, 0)">
+            <column name="category" type="text">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-22" author="dandy (generated)">
@@ -351,6 +458,12 @@
                 <constraints nullable="false"/>
             </column>
             <column name="expired_time_task" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-23" author="dandy (generated)">
@@ -368,6 +481,12 @@
             <column name="order_index" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-24" author="dandy (generated)">
@@ -381,6 +500,12 @@
             <column name="achievement_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_achievement"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-25" author="dandy (generated)">
@@ -396,6 +521,12 @@
             </column>
             <column name="max_points" type="INT"/>
             <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-26" author="dandy (generated)">
@@ -415,6 +546,12 @@
             <column name="status" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <changeSet id="1748185047780-27" author="dandy (generated)">

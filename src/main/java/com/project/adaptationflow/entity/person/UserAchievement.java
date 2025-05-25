@@ -14,43 +14,33 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "user_achievement", schema = "public")
 public class UserAchievement implements Serializable {
     private static final long serialVersionUID = -3324939935931600699L;
-    private UserAchievementId id;
-
-    private SysUser user;
-
-    private Achievement achievement;
-
-    private OffsetDateTime awardedAt;
 
     @EmbeddedId
-    protected UserAchievementId getId() {
-        return id;
-    }
+    private UserAchievementId id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @MapsId("achievementId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "achievement_id", nullable = false)
-    protected Achievement getAchievement() {
-        return achievement;
-    }
+    private Achievement achievement;
 
     @Column(name = "awarded_at", nullable = false)
-    protected OffsetDateTime getAwardedAt() {
-        return awardedAt;
-    }
+    private OffsetDateTime awardedAt;
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "EmbeddedId = " + id + ", " +
+                "awardedAt = " + awardedAt + ")";
+    }
 }

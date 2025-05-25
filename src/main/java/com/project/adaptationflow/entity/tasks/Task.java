@@ -27,64 +27,31 @@ import java.util.UUID;
 public class Task extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -7545796661791342625L;
-    private UUID id;
-
-    private TrackStage trackStage;
-
-    private String name;
-
-    private String description;
-
-    private String status;
-
-    private OffsetDateTime expiredTimeTask;
-
-    private Set<Anketa> anketas = new LinkedHashSet<>();
-
-    private Set<TaskDetail> taskDetails = new LinkedHashSet<>();
-
-    private Set<UsersTasksLink> usersTasksLinks = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "track_stage_id", nullable = false)
-    protected TrackStage getTrackStage() {
-        return trackStage;
-    }
+    private TrackStage trackStage;
 
     @Column(name = "name", nullable = false)
-    protected String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
-    protected String getDescription() {
-        return description;
-    }
+    private String description;
 
     @Column(name = "status", nullable = false, length = 50)
-    protected String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Column(name = "expired_time_task")
-    protected OffsetDateTime getExpiredTimeTask() {
-        return expiredTimeTask;
-    }
+    private OffsetDateTime expiredTimeTask;
 
     @OneToMany(mappedBy = "task")
-    protected Set<Anketa> getAnketas() {
-        return anketas;
-    }
+    private Set<Anketa> anketas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "task")
-    protected Set<TaskDetail> getTaskDetails() {
-        return taskDetails;
-    }
+    private Set<TaskDetail> taskDetails = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "task")
-    protected Set<UsersTasksLink> getUsersTasksLinks() {
-        return usersTasksLinks;
-    }
+    private Set<UsersTasksLink> usersTasksLinks = new LinkedHashSet<>();
 
 }

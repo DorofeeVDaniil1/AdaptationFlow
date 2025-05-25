@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,20 +18,14 @@ import java.util.UUID;
 @ToString
 @Embeddable
 public class UserAchievementId implements Serializable {
+    @Serial
     private static final long serialVersionUID = -2581733769417890041L;
-    private UUID userId;
-
-    private UUID achievementId;
 
     @Column(name = "user_id", nullable = false)
-    protected UUID getUserId() {
-        return userId;
-    }
+    private UUID userId;
 
     @Column(name = "achievement_id", nullable = false)
-    protected UUID getAchievementId() {
-        return achievementId;
-    }
+    private UUID achievementId;
 
     @Override
     public boolean equals(Object o) {

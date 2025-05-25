@@ -22,28 +22,14 @@ import java.util.UUID;
 public class Role extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 6635794781039728975L;
-    private UUID id;
-
-    private String name;
-
-    private String description;
-
-    private Set<SysUserRole> sysUserRoles = new LinkedHashSet<>();
-
 
     @Column(name = "name", nullable = false)
-    protected String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
-    protected String getDescription() {
-        return description;
-    }
+    private String description;
 
     @OneToMany(mappedBy = "role")
-    protected Set<SysUserRole> getSysUserRoles() {
-        return sysUserRoles;
-    }
+    private Set<SysUserRole> sysUserRoles = new LinkedHashSet<>();
 
 }

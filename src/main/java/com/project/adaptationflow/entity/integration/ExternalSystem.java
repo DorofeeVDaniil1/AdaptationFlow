@@ -23,28 +23,11 @@ import java.util.UUID;
 public class ExternalSystem extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -5511870607339895199L;
-    private UUID id;
-
-    private String name;
-
-    private Map<String, Object> config;
-
-    private Set<IntegrationMapping> integrationMappings = new LinkedHashSet<>();
 
     @Column(name = "name", nullable = false, length = 100)
-    protected String getName() {
-        return name;
-    }
-
-    @Column(name = "config", nullable = false)
-    @JdbcTypeCode(SqlTypes.JSON)
-    protected Map<String, Object> getConfig() {
-        return config;
-    }
+    private String name;
 
     @OneToMany(mappedBy = "system")
-    protected Set<IntegrationMapping> getIntegrationMappings() {
-        return integrationMappings;
-    }
+    private Set<IntegrationMapping> integrationMappings = new LinkedHashSet<>();
 
 }

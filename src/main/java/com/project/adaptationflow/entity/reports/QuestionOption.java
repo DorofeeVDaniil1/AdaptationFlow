@@ -20,34 +20,17 @@ import java.util.UUID;
 public class QuestionOption extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -3224581886804009883L;
-    private UUID id;
-
-    private String questionText;
-
-    private Boolean isActive = false;
-
-    private Set<Anketa> anketas = new LinkedHashSet<>();
-
-    private Set<AnswerOption> answerOptions = new LinkedHashSet<>();
 
     @Column(name = "question_text", nullable = false, length = Integer.MAX_VALUE)
-    protected String getQuestionText() {
-        return questionText;
-    }
+    private String questionText;
 
     @Column(name = "is_active", nullable = false)
-    protected Boolean getIsActive() {
-        return isActive;
-    }
+    private Boolean isActive = false;
 
     @ManyToMany(mappedBy = "questionOptions")
-    protected Set<Anketa> getAnketas() {
-        return anketas;
-    }
+    private Set<Anketa> anketas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "question")
-    protected Set<AnswerOption> getAnswerOptions() {
-        return answerOptions;
-    }
+    private Set<AnswerOption> answerOptions = new LinkedHashSet<>();
 
 }

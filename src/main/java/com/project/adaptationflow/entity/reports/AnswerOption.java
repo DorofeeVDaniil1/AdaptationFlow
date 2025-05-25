@@ -20,22 +20,13 @@ import java.util.UUID;
 public class AnswerOption extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 2216012029228070177L;
-    private UUID id;
-
-    private QuestionOption question;
-
-    private String answerText;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_id", nullable = false)
-    protected QuestionOption getQuestion() {
-        return question;
-    }
+    private QuestionOption question;
 
     @Column(name = "answer_text", nullable = false, length = Integer.MAX_VALUE)
-    protected String getAnswerText() {
-        return answerText;
-    }
+    private String answerText;
 
 }

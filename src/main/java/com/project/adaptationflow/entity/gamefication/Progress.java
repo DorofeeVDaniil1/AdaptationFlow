@@ -23,41 +23,23 @@ import java.util.UUID;
 public class Progress extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -2685042614015425863L;
-    private UUID id;
-
-    private UsersTasksLink usersTasksLink;
-
-    private TaskDetail detail;
-
-    private OffsetDateTime completedAt;
-
-    private String comment;
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumns({
-            @JoinColumn(name = "assignment_user", referencedColumnName = "user_id", nullable = false),
-            @JoinColumn(name = "assignment_task", referencedColumnName = "task_id", nullable = false)
+            @JoinColumn(name = "assignment_user", referencedColumnName = "user_id"),
+            @JoinColumn(name = "assignment_task", referencedColumnName = "task_id")
     })
     @OnDelete(action = OnDeleteAction.CASCADE)
-    protected UsersTasksLink getUsersTasksLink() {
-        return usersTasksLink;
-    }
+    private UsersTasksLink usersTasksLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "detail_id")
-    protected TaskDetail getDetail() {
-        return detail;
-    }
+    private TaskDetail detail;
 
     @Column(name = "completed_at")
-    protected OffsetDateTime getCompletedAt() {
-        return completedAt;
-    }
+    private OffsetDateTime completedAt;
 
     @Column(name = "comment", length = Integer.MAX_VALUE)
-    protected String getComment() {
-        return comment;
-    }
+    private String comment;
 
 }

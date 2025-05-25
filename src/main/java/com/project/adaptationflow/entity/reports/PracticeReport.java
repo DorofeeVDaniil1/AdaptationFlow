@@ -23,53 +23,27 @@ import java.util.UUID;
 public class PracticeReport extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 455336129426869701L;
-    private UUID id;
-
-    private Practice practice;
-
-    private SysUser user;
-
-    private String report;
-
-    private OffsetDateTime submittedAt;
-
-    private UUID approvedBy;
-
-    private OffsetDateTime approvedAt;
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "practice_id", nullable = false)
-    protected Practice getPractice() {
-        return practice;
-    }
+    private Practice practice;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @Column(name = "report", length = Integer.MAX_VALUE)
-    protected String getReport() {
-        return report;
-    }
+    private String report;
 
     @Column(name = "submitted_at", nullable = false)
-    protected OffsetDateTime getSubmittedAt() {
-        return submittedAt;
-    }
+    private OffsetDateTime submittedAt;
 
     @Column(name = "approved_by")
-    protected UUID getApprovedBy() {
-        return approvedBy;
-    }
+    private UUID approvedBy;
 
     @Column(name = "approved_at")
-    protected OffsetDateTime getApprovedAt() {
-        return approvedAt;
-    }
+    private OffsetDateTime approvedAt;
 
 }

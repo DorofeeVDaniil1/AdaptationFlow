@@ -18,20 +18,11 @@ import java.util.UUID;
 public class FaqEntry extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -8227505441964521460L;
-    private UUID id;
-
-    private String question;
-
-    private String answer;
 
     @Column(name = "question", nullable = false, length = Integer.MAX_VALUE)
-    protected String getQuestion() {
-        return question;
-    }
+    private String question;
 
     @Column(name = "answer", nullable = false, length = Integer.MAX_VALUE)
-    protected String getAnswer() {
-        return answer;
-    }
+    private String answer;
 
 }

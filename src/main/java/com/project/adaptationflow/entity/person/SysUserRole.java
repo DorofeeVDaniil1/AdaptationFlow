@@ -20,38 +20,23 @@ import java.time.OffsetDateTime;
 public class SysUserRole implements Serializable {
     @Serial
     private static final long serialVersionUID = -311464475003468949L;
-    private SysUserRoleId id;
-
-    private SysUser user;
-
-    private Role role;
-
-    private OffsetDateTime assignedAt;
 
     @EmbeddedId
-    protected SysUserRoleId getId() {
-        return id;
-    }
+    private SysUserRoleId id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @MapsId("roleId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "role_id", nullable = false)
-    protected Role getRole() {
-        return role;
-    }
+    private Role role;
 
     @Column(name = "assigned_at", nullable = false)
-    protected OffsetDateTime getAssignedAt() {
-        return assignedAt;
-    }
+    private OffsetDateTime assignedAt;
 
 }

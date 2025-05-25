@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,20 +18,17 @@ import java.util.UUID;
 @ToString
 @Embeddable
 public class AnketaQuestionLinkId implements Serializable {
+    @Serial
     private static final long serialVersionUID = 5703479251568249139L;
-    private UUID anketaId;
 
-    private UUID questionId;
 
     @Column(name = "anketa_id", nullable = false)
-    protected UUID getAnketaId() {
-        return anketaId;
-    }
+    private UUID anketaId;
+
 
     @Column(name = "question_id", nullable = false)
-    protected UUID getQuestionId() {
-        return questionId;
-    }
+    private UUID questionId;
+
 
     @Override
     public boolean equals(Object o) {

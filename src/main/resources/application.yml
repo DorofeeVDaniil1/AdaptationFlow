@@ -20,4 +20,5 @@ spring:
       repositories:
         enabled: true
   liquibase:
-    change-log: classpath:/db/liquibase/init-schema.xml
+    enabled: false
+    change-log: classpath:/db/liquibase/master.xml

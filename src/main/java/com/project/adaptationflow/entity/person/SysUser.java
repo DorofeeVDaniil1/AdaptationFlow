@@ -27,135 +27,60 @@ import java.util.UUID;
 public class SysUser extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 3705836661104986912L;
-    private UUID id;
-
-    private String login;
-
-    private String passwordHash;
-
-    private String firstName;
-
-    private String lastName;
-
-    private String patronymic;
-
-    private String email;
-
-    private Boolean isActive = false;
-
-    private OffsetDateTime lastLoginDate;
-
-    private UserLevel userLevel;
-
-    private Set<Anketa> anketas = new LinkedHashSet<>();
-
-    private Set<Notification> notifications = new LinkedHashSet<>();
-
-    private Set<PointsTransaction> pointsTransactions = new LinkedHashSet<>();
-
-    private Set<Practice> practices = new LinkedHashSet<>();
-
-    private Set<PracticeReport> practiceReports = new LinkedHashSet<>();
-
-    private Set<SupportRequest> supportRequests = new LinkedHashSet<>();
-
-    private Set<SysUserRole> sysUserRoles = new LinkedHashSet<>();
-
-    private Set<UserAchievement> userAchievements = new LinkedHashSet<>();
-
-    private Set<UserOnboardingTrack> userOnboardingTracks = new LinkedHashSet<>();
-
-    private Set<UsersTasksLink> usersTasksLinks = new LinkedHashSet<>();
 
     @Column(name = "login", nullable = false, length = 100)
-    protected String getLogin() {
-        return login;
-    }
+    private String login;
 
     @Column(name = "password_hash", nullable = false)
-    protected String getPasswordHash() {
-        return passwordHash;
-    }
+    private String passwordHash;
 
     @Column(name = "first_name", length = 50)
-    protected String getFirstName() {
-        return firstName;
-    }
+    private String firstName;
 
     @Column(name = "last_name", length = 50)
-    protected String getLastName() {
-        return lastName;
-    }
+    private String lastName;
 
     @Column(name = "patronymic", length = 100)
-    protected String getPatronymic() {
-        return patronymic;
-    }
+    private String patronymic;
 
     @Column(name = "email", length = 254)
-    protected String getEmail() {
-        return email;
-    }
+    private String email;
 
     @Column(name = "is_active", nullable = false)
-    protected Boolean getIsActive() {
-        return isActive;
-    }
+    private Boolean isActive = false;
 
     @Column(name = "last_login_date")
-    protected OffsetDateTime getLastLoginDate() {
-        return lastLoginDate;
-    }
+    private OffsetDateTime lastLoginDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_level_id")
-    protected UserLevel getUserLevel() {
-        return userLevel;
-    }
+    private UserLevel userLevel;
 
     @OneToMany(mappedBy = "user")
-    protected Set<Anketa> getAnketas() {
-        return anketas;
-    }
+    private Set<Anketa> anketas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<Notification> getNotifications() {
-        return notifications;
-    }
+    private Set<Notification> notifications = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<PointsTransaction> getPointsTransactions() {
-        return pointsTransactions;
-    }
+    private Set<PointsTransaction> pointsTransactions = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<PracticeReport> getPracticeReports() {
-        return practiceReports;
-    }
+    private Set<PracticeReport> practiceReports = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<SupportRequest> getSupportRequests() {
-        return supportRequests;
-    }
+    private Set<SupportRequest> supportRequests = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<SysUserRole> getSysUserRoles() {
-        return sysUserRoles;
-    }
+    private Set<SysUserRole> sysUserRoles = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<UserAchievement> getUserAchievements() {
-        return userAchievements;
-    }
+    private Set<UserAchievement> userAchievements = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<UserOnboardingTrack> getUserOnboardingTracks() {
-        return userOnboardingTracks;
-    }
+    private Set<UserOnboardingTrack> userOnboardingTracks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    protected Set<UsersTasksLink> getUsersTasksLinks() {
-        return usersTasksLinks;
-    }
+    private Set<UsersTasksLink> usersTasksLinks = new LinkedHashSet<>();
 
 }

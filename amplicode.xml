@@ -10,13 +10,13 @@
     <option name="isLombokNoArgsConstructor" value="true" />
     <option name="scaffoldingLanguage" />
   </component>
-  <component name="AmplicodeReverseEngineeringSettings">
-    <database-infos>
-      <database-info dbms-id="postgres">
-        <mapping-types>
-          <mapping-type sql-type="task_info_category" java-class="java.lang.Object" />
-        </mapping-types>
-      </database-info>
-    </database-infos>
+  <component name="AmplicodePersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default" defaultIncludeChangeLogFile="src/main/resources/db/changelog/db.changelog-master.xml">
+        <packages>
+          <package value="com.project.adaptationflow" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
   </component>
 </project>

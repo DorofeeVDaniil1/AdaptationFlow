@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,20 +18,14 @@ import java.util.UUID;
 @ToString
 @Embeddable
 public class SysUserRoleId implements Serializable {
+    @Serial
     private static final long serialVersionUID = -4675079510385780694L;
-    private UUID userId;
-
-    private UUID roleId;
 
     @Column(name = "user_id", nullable = false)
-    protected UUID getUserId() {
-        return userId;
-    }
+    private UUID userId;
 
     @Column(name = "role_id", nullable = false)
-    protected UUID getRoleId() {
-        return roleId;
-    }
+    private UUID roleId;
 
     @Override
     public boolean equals(Object o) {

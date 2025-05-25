@@ -23,41 +23,20 @@ import java.util.UUID;
 public class Practice extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 9106888302701121999L;
-    private UUID id;
-
-    private String name;
-
-    private String location;
-
-    private LocalDate startDate;
-
-    private LocalDate endDate;
-
-    private Set<PracticeReport> practiceReports = new LinkedHashSet<>();
 
     @Column(name = "name", nullable = false, length = 150)
-    protected String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "location", length = Integer.MAX_VALUE)
-    protected String getLocation() {
-        return location;
-    }
+    private String location;
 
     @Column(name = "start_date")
-    protected LocalDate getStartDate() {
-        return startDate;
-    }
+    private LocalDate startDate;
 
     @Column(name = "end_date")
-    protected LocalDate getEndDate() {
-        return endDate;
-    }
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "practice")
-    protected Set<PracticeReport> getPracticeReports() {
-        return practiceReports;
-    }
+    private Set<PracticeReport> practiceReports = new LinkedHashSet<>();
 
 }

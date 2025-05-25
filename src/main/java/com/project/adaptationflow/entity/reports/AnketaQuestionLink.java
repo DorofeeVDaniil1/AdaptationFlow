@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Builder
@@ -12,36 +13,30 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "anketa_question_link", schema = "public")
 public class AnketaQuestionLink implements Serializable {
+    @Serial
     private static final long serialVersionUID = 3527952192536168889L;
-    private AnketaQuestionLinkId id;
-
-    private Anketa anketa;
-
-    private QuestionOption question;
 
     @EmbeddedId
-    protected AnketaQuestionLinkId getId() {
-        return id;
-    }
+    private AnketaQuestionLinkId id;
 
     @MapsId("anketaId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "anketa_id", nullable = false)
-    protected Anketa getAnketa() {
-        return anketa;
-    }
+    private Anketa anketa;
 
     @MapsId("questionId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_id", nullable = false)
-    protected QuestionOption getQuestion() {
-        return question;
-    }
+    private QuestionOption question;
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "EmbeddedId = " + id + ")";
+    }
 }

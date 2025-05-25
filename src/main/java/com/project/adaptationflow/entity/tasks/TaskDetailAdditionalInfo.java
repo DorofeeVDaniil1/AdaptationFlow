@@ -20,29 +20,16 @@ import java.util.UUID;
 public class TaskDetailAdditionalInfo extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 2010954072490194152L;
-    private UUID id;
-
-    private TaskDetail taskDetail;
-
-    private String documentUrl;
-
-    private Object category;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "task_detail_id", nullable = false)
-    protected TaskDetail getTaskDetail() {
-        return taskDetail;
-    }
+    private TaskDetail taskDetail;
 
     @Column(name = "document_url", nullable = false, length = Integer.MAX_VALUE)
-    protected String getDocumentUrl() {
-        return documentUrl;
-    }
+    private String documentUrl;
 
-    @Column(name = "category", columnDefinition = "task_info_category(0, 0) not null")
-    protected Object getCategory() {
-        return category;
-    }
+    @Column(name = "category", nullable = false)
+    private String category;
 
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -13,24 +14,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @ToString
 @Embeddable
 public class UsersTasksLinkId implements Serializable {
+    @Serial
     private static final long serialVersionUID = 6548196332103063854L;
-    private UUID userId;
-
-    private UUID taskId;
 
     @Column(name = "user_id", nullable = false)
-    protected UUID getUserId() {
-        return userId;
-    }
+    private UUID userId;
 
     @Column(name = "task_id", nullable = false)
-    protected UUID getTaskId() {
-        return taskId;
-    }
+    private UUID taskId;
 
     @Override
     public boolean equals(Object o) {

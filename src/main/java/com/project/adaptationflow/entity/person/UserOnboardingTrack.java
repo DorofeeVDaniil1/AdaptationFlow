@@ -26,45 +26,24 @@ import java.util.UUID;
 public class UserOnboardingTrack extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = -8515659719564568039L;
-    private UUID id;
-
-    private SysUser user;
-
-    private OnboardingTrack track;
-
-    private OffsetDateTime startedAt;
-
-    private String status;
-
-    private Set<UserTrackStage> userTrackStages = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    protected SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "track_id", nullable = false)
-    protected OnboardingTrack getTrack() {
-        return track;
-    }
+    private OnboardingTrack track;
 
     @Column(name = "started_at", nullable = false)
-    protected OffsetDateTime getStartedAt() {
-        return startedAt;
-    }
+    private OffsetDateTime startedAt;
 
     @Column(name = "status", nullable = false, length = 20)
-    protected String getStatus() {
-        return status;
-    }
+    private String status;
 
     @OneToMany(mappedBy = "uot")
-    protected Set<UserTrackStage> getUserTrackStages() {
-        return userTrackStages;
-    }
+    private Set<UserTrackStage> userTrackStages = new LinkedHashSet<>();
 
 }
