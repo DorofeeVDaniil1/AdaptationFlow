@@ -826,5 +826,4 @@
             <column name="uot_id"/>
         </createIndex>
     </changeSet>
-    <include file="/db/liquibase/master.xml"/>
 </databaseChangeLog>
