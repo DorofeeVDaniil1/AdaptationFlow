@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: AdaptationFlow
+
+  datasource:
+    url: jdbc:postgresql://localhost/adapt_game
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  liquibase:
+    change-log: classpath:/db/liquibase/init-schema.xml
