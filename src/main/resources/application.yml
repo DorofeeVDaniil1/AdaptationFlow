@@ -25,3 +25,9 @@ spring:
 jwt:
   secret: "your-256-bit-secret-your-very-long-secret-key-for-hmac"
   expiration-ms: 3600000  # время жизни токена в миллисекундах (1 час)
+logging:
+  level:
+    root: INFO                 # общий уровень логов
+    com.project.adaptationflow.config.JwtAuthenticationFilter: DEBUG  # подробное логирование фильтра JWT
+    com.project.adaptationflow: DEBUG   # подробное логирование всего твоего пакета
+    org.springframework.security: INFO  # можно понизить уровень логов Spring Security, если много шума
