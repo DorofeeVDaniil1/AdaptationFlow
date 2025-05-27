@@ -11,13 +11,18 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Embeddable
 public class SysUserRoleId implements Serializable {
+
+    public SysUserRoleId(UUID userId, UUID roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+    public SysUserRoleId() {}
+
     @Serial
     private static final long serialVersionUID = -4675079510385780694L;
 

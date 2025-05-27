@@ -12,10 +12,10 @@ import java.time.OffsetDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @ToString
 @Entity
+@Setter
+@Getter
 @Table(name = "sys_user_role", schema = "public")
 public class SysUserRole implements Serializable {
     @Serial
@@ -39,4 +39,23 @@ public class SysUserRole implements Serializable {
     @Column(name = "assigned_at", nullable = false)
     private OffsetDateTime assignedAt;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setId(SysUserRoleId id) {
+        this.id = id;
+    }
+
+    public void setUser(SysUser user) {
+        this.user = user;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setAssignedAt(OffsetDateTime assignedAt) {
+        this.assignedAt = assignedAt;
+    }
 }

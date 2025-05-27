@@ -14,15 +14,17 @@ import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.UUID;
+import lombok.Builder;
 
-@Builder
+
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @ToString
 @Entity
+@Getter
+@Setter
+@Builder
 @Table(name = "sys_users", schema = "public")
 public class SysUser extends StandardEntityUUID {
     @Serial
@@ -40,6 +42,7 @@ public class SysUser extends StandardEntityUUID {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
+    @Setter
     @Column(name = "patronymic", length = 100)
     private String patronymic;
 
@@ -82,5 +85,203 @@ public class SysUser extends StandardEntityUUID {
 
     @OneToMany(mappedBy = "user")
     private Set<UsersTasksLink> usersTasksLinks = new LinkedHashSet<>();
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public OffsetDateTime getLastLoginDate() {
+        return lastLoginDate;
+    }
+
+    public void setLastLoginDate(OffsetDateTime lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
+    }
+
+    public UserLevel getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(UserLevel userLevel) {
+        this.userLevel = userLevel;
+    }
+
+    public Set<Anketa> getAnketas() {
+        return anketas;
+    }
+
+    public void setAnketas(Set<Anketa> anketas) {
+        this.anketas = anketas;
+    }
+
+    public Set<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Set<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public Set<PointsTransaction> getPointsTransactions() {
+        return pointsTransactions;
+    }
+
+    public void setPointsTransactions(Set<PointsTransaction> pointsTransactions) {
+        this.pointsTransactions = pointsTransactions;
+    }
+
+    public Set<PracticeReport> getPracticeReports() {
+        return practiceReports;
+    }
+
+    public void setPracticeReports(Set<PracticeReport> practiceReports) {
+        this.practiceReports = practiceReports;
+    }
+
+    public Set<SupportRequest> getSupportRequests() {
+        return supportRequests;
+    }
+
+    public void setSupportRequests(Set<SupportRequest> supportRequests) {
+        this.supportRequests = supportRequests;
+    }
+
+    public Set<SysUserRole> getSysUserRoles() {
+        return sysUserRoles;
+    }
+
+    public void setSysUserRoles(Set<SysUserRole> sysUserRoles) {
+        this.sysUserRoles = sysUserRoles;
+    }
+
+    public Set<UserAchievement> getUserAchievements() {
+        return userAchievements;
+    }
+
+    public void setUserAchievements(Set<UserAchievement> userAchievements) {
+        this.userAchievements = userAchievements;
+    }
+
+    public Set<UserOnboardingTrack> getUserOnboardingTracks() {
+        return userOnboardingTracks;
+    }
+
+    public void setUserOnboardingTracks(Set<UserOnboardingTrack> userOnboardingTracks) {
+        this.userOnboardingTracks = userOnboardingTracks;
+    }
+
+    public Set<UsersTasksLink> getUsersTasksLinks() {
+        return usersTasksLinks;
+    }
+
+    public void setUsersTasksLinks(Set<UsersTasksLink> usersTasksLinks) {
+        this.usersTasksLinks = usersTasksLinks;
+    }
+
+    public static class Builder {
+        private final SysUser instance = new SysUser();
+
+        public Builder login(String login) {
+            instance.login = login;
+            return this;
+        }
+
+        public Builder passwordHash(String passwordHash) {
+            instance.passwordHash = passwordHash;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            instance.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            instance.lastName = lastName;
+            return this;
+        }
+
+        public Builder patronymic(String patronymic) {
+            instance.patronymic = patronymic;
+            return this;
+        }
+
+        public Builder email(String email) {
+            instance.email = email;
+            return this;
+        }
+
+        public Builder isActive(Boolean isActive) {
+            instance.isActive = isActive;
+            return this;
+        }
+
+        public Builder lastLoginDate(OffsetDateTime lastLoginDate) {
+            instance.lastLoginDate = lastLoginDate;
+            return this;
+        }
+
+        public SysUser build() {
+            // Тут можно добавить проверки обязательных полей
+            if (instance.login == null || instance.passwordHash == null) {
+                throw new IllegalStateException("login and passwordHash must be set");
+            }
+            return instance;
+        }
+    }
+
+    // Удобный статический метод для начала построения
+    public static Builder builder() {
+        return new Builder();
+    }
+
 
 }

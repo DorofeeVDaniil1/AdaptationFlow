@@ -12,8 +12,6 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @ToString
 @Entity
 @Table(name = "role", schema = "public", indexes = {
@@ -32,4 +30,28 @@ public class Role extends StandardEntityUUID {
     @OneToMany(mappedBy = "role")
     private Set<SysUserRole> sysUserRoles = new LinkedHashSet<>();
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<SysUserRole> getSysUserRoles() {
+        return sysUserRoles;
+    }
+
+    public void setSysUserRoles(Set<SysUserRole> sysUserRoles) {
+        this.sysUserRoles = sysUserRoles;
+    }
 }
