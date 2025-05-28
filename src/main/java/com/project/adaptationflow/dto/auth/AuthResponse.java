@@ -1,7 +1,4 @@
-package com.project.adaptationflow.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+package com.project.adaptationflow.dto.auth;
 
 public class AuthResponse {
     private String token;

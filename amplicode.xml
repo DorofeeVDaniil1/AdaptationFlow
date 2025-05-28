@@ -9,6 +9,7 @@
     <option name="isLombokAllArgsConstructor" value="true" />
     <option name="isLombokNoArgsConstructor" value="true" />
     <option name="scaffoldingLanguage" />
+    <option name="lastSelectedLanguage" value="Java" />
   </component>
   <component name="AmplicodePersistenceUnitSettings">
     <persistence-units>

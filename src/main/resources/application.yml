@@ -24,7 +24,7 @@ spring:
     change-log: classpath:/db/liquibase/master.xml
 jwt:
   secret: "your-256-bit-secret-your-very-long-secret-key-for-hmac"
-  expiration-ms: 3600000  # время жизни токена в миллисекундах (1 час)
+  expiration-ms: 360000000  # время жизни токена в миллисекундах (10 час)
 logging:
   level:
     root: INFO                 # общий уровень логов

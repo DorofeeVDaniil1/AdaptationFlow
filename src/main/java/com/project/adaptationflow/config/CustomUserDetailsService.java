@@ -4,6 +4,7 @@ import com.project.adaptationflow.entity.person.Role;
 import com.project.adaptationflow.entity.person.SysUser;
 import com.project.adaptationflow.entity.person.SysUserRole;
 import com.project.adaptationflow.repo.SysUserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
     private final SysUserRepository userRepository;
 

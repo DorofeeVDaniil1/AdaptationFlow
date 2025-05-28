@@ -1,4 +1,4 @@
-package com.project.adaptationflow.dto;
+package com.project.adaptationflow.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

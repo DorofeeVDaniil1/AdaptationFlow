@@ -426,7 +426,7 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_task_detail_additional_info"/>
             </column>
             <column name="task_detail_id" type="UUID">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="document_url" type="text">
                 <constraints nullable="false"/>
