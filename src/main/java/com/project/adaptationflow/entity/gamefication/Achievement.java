@@ -34,7 +34,7 @@ public class Achievement extends StandardEntityUUID {
     @Column(name = "points", nullable = false)
     private Integer points;
 
-    @OneToMany(mappedBy = "achievement")
+    @OneToMany(mappedBy = "achievement", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserAchievement> userAchievements = new LinkedHashSet<>();
 
     @Override
