@@ -1,0 +1,7 @@
+# Игнорировать всё кроме исходников, pom.xml и jar в target
+*
+!src/
+!pom.xml
+!mvnw
+!target/*.jar
+!.mvn/
