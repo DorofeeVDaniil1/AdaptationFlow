@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd">
+
+    <changeSet id="1748185047780-72" author="dandy">
+        <sql>
+            INSERT INTO sys_users (id, login, password_hash, first_name, last_name, email, is_active, create_ts, created_by)
+            VALUES ('e4708fca-ea9f-4cec-987c-3b65446fe134', 'admin', '$2a$10$oRiSe87a4ApnzK0mdVqrrOaG9YzXsSB/rCUzGM3eTTGKG5fJoWVra', 'Админ', 'securePassword1', 'ivan.ivanov@example.com', true, '2025-05-27T10:00:00', 'system')
+            ON CONFLICT (id) DO NOTHING;
+
+            INSERT INTO role (id, name, description, create_ts, created_by) VALUES
+            ('26e464c1-fe64-481a-ad01-4d0c166ba1a5', 'ROLE_USER', 'Пользователь', '2025-05-27T10:00:00', 'system'),
+            ('96e462c1-ae64-482a-ab01-7d0c166fa0a1', 'ROLE_ADMIN', 'Администратор', '2025-05-27T10:00:00', 'system'),
+            ('4782c4a3-f9f2-4320-af10-9724ecbc3f6e', 'ROLE_MENTOR', 'Куратор', '2025-05-27T10:00:00', 'system')
+            ON CONFLICT (id) DO NOTHING;
+
+            INSERT INTO sys_user_role (role_id, user_id, assigned_at)
+            VALUES ('96e462c1-ae64-482a-ab01-7d0c166fa0a1', 'e4708fca-ea9f-4cec-987c-3b65446fe134', '2025-05-27T10:00:00')
+            ON CONFLICT (role_id, user_id) DO NOTHING;
+
+            INSERT INTO task_detail_additional_info (id, category, document_url, create_ts, created_by)
+            VALUES ('78604c8e-1ca0-4440-8044-a00e3bb16bc6', 'DOCUMENT', 'Паспорт', '2025-05-27T10:00:00', 'system')
+            ON CONFLICT (id) DO NOTHING;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

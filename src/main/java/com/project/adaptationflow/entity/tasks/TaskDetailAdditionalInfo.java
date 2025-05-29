@@ -21,9 +21,9 @@ public class TaskDetailAdditionalInfo extends StandardEntityUUID {
     @Serial
     private static final long serialVersionUID = 2010954072490194152L;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "task_detail_id", nullable = false)
+    @JoinColumn(name = "task_detail_id")
     private TaskDetail taskDetail;
 
     @Column(name = "document_url", nullable = false, length = Integer.MAX_VALUE)
