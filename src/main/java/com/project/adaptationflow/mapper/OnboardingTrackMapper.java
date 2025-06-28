@@ -1,7 +1,7 @@
 package com.project.adaptationflow.mapper;
 
 import com.project.adaptationflow.dto.task.OnboardingTrackDto;
-import com.project.adaptationflow.entity.gamefication.OnboardingTrack;
+import com.project.adaptationflow.entity.tasks.OnboardingTrack;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;

@@ -2,11 +2,14 @@ package com.project.adaptationflow.entity.person;
 
 import com.project.adaptationflow.entity.*;
 import com.project.adaptationflow.entity.gamefication.PointsTransaction;
-import com.project.adaptationflow.entity.gamefication.Practice;
+import com.project.adaptationflow.entity.gamefication.UserAchievement;
+import com.project.adaptationflow.entity.gamefication.UserLevel;
 import com.project.adaptationflow.entity.notification.Notification;
 import com.project.adaptationflow.entity.questions.SupportRequest;
 import com.project.adaptationflow.entity.reports.Anketa;
 import com.project.adaptationflow.entity.reports.PracticeReport;
+import com.project.adaptationflow.entity.tasks.UserOnboardingTrack;
+import com.project.adaptationflow.entity.tasks.UsersTasksLink;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,5 +1,6 @@
 package com.project.adaptationflow.dto;
 
+import com.project.adaptationflow.entity.gamefication.UserAchievement;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Value;
@@ -24,7 +25,7 @@ public class AchievementDto {
     Set<UserAchievementDto> userAchievements;
 
     /**
-     * DTO for {@link com.project.adaptationflow.entity.person.UserAchievement}
+     * DTO for {@link UserAchievement}
      */
     @Value
     public static class UserAchievementDto {

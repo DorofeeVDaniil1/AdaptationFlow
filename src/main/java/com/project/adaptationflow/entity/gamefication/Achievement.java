@@ -1,7 +1,6 @@
 package com.project.adaptationflow.entity.gamefication;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.person.UserAchievement;
 import jakarta.persistence.*;
 import lombok.*;
 

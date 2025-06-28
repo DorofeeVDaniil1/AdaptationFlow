@@ -1,6 +1,6 @@
-package com.project.adaptationflow.entity.person;
+package com.project.adaptationflow.entity.gamefication;
 
-import com.project.adaptationflow.entity.gamefication.Achievement;
+import com.project.adaptationflow.entity.person.SysUser;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
