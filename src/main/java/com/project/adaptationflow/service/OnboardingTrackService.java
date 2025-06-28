@@ -3,7 +3,7 @@ package com.project.adaptationflow.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.adaptationflow.dto.task.OnboardingTrackDto;
-import com.project.adaptationflow.entity.gamefication.OnboardingTrack;
+import com.project.adaptationflow.entity.tasks.OnboardingTrack;
 import com.project.adaptationflow.mapper.OnboardingTrackMapper;
 import com.project.adaptationflow.repo.OnboardingTrackRepository;
 import lombok.RequiredArgsConstructor;

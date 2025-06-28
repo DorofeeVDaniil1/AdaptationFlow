@@ -1,7 +1,7 @@
 package com.project.adaptationflow.mapper;
 
 import com.project.adaptationflow.dto.task.TrackStageDto;
-import com.project.adaptationflow.entity.gamefication.OnboardingTrack;
+import com.project.adaptationflow.entity.tasks.OnboardingTrack;
 import com.project.adaptationflow.entity.tasks.TrackStage;
 import com.project.adaptationflow.repo.OnboardingTrackRepository;
 import jakarta.persistence.EntityNotFoundException;

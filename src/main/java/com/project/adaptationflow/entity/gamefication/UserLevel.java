@@ -1,13 +1,13 @@
-package com.project.adaptationflow.entity.person;
+package com.project.adaptationflow.entity.gamefication;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.person.SysUser;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor

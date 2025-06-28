@@ -1,7 +1,7 @@
 package com.project.adaptationflow.mapper;
 
 import com.project.adaptationflow.dto.AchievementDto;
-import com.project.adaptationflow.entity.person.UserAchievement;
+import com.project.adaptationflow.entity.gamefication.UserAchievement;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

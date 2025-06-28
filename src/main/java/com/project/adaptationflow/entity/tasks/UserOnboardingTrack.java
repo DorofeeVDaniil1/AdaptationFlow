@@ -1,7 +1,7 @@
-package com.project.adaptationflow.entity.person;
+package com.project.adaptationflow.entity.tasks;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.gamefication.OnboardingTrack;
+import com.project.adaptationflow.entity.person.SysUser;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -11,7 +11,6 @@ import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor

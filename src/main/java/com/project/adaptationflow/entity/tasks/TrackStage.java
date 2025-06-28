@@ -1,8 +1,6 @@
 package com.project.adaptationflow.entity.tasks;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.person.UserTrackStage;
-import com.project.adaptationflow.entity.gamefication.OnboardingTrack;
 import com.project.adaptationflow.entity.reports.Anketa;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +10,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.io.Serial;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor

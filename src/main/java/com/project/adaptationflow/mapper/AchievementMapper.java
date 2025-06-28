@@ -3,17 +3,15 @@ package com.project.adaptationflow.mapper;
 import com.project.adaptationflow.dto.AchievementDto;
 import com.project.adaptationflow.entity.gamefication.Achievement;
 import com.project.adaptationflow.entity.person.SysUser;
-import com.project.adaptationflow.entity.person.UserAchievement;
-import com.project.adaptationflow.entity.person.UserAchievementId;
+import com.project.adaptationflow.entity.gamefication.UserAchievement;
+import com.project.adaptationflow.entity.gamefication.UserAchievementId;
 import com.project.adaptationflow.repo.SysUserRepository;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public abstract class AchievementMapper {

@@ -1,7 +1,7 @@
 package com.project.adaptationflow.entity.gamefication;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.person.UsersTasksLink;
+import com.project.adaptationflow.entity.tasks.UsersTasksLink;
 import com.project.adaptationflow.entity.tasks.TaskDetail;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
