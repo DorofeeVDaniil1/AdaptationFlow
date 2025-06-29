@@ -15,7 +15,7 @@ docker-compose up
 ## 🔌 API интеграция
 
 ### Endpoints приложения
-![Главная страница](https://github.com/DorofeeVDaniil1/Adaptation_front/blob/main/main.png)
+![Главная страница](https://github.com/DorofeeVDaniil1/AdaptationFlow/blob/main/photos/img.png)
 
 ### Формат данных сотрудника:
 ```typescript
@@ -30,9 +30,11 @@ POST http://localhost:8080/api/auth/register
     "email": ""
 }
 ```
+![Главная страница](https://github.com/DorofeeVDaniil1/AdaptationFlow/blob/main/photos/img_1.png)
 
-## 🎨 БД и сущности
-![Главная страница](https://github.com/DorofeeVDaniil1/Adaptation_front/blob/main/main.png)
+
+## БД и сущности
+![Главная страница](https://github.com/DorofeeVDaniil1/AdaptationFlow/blob/main/photos/img_2.png)
 
 
 ## 🔮 Планы развития
