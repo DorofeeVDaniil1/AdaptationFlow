@@ -1,11 +1,11 @@
-package com.project.adaptationflow.entity.person;
+package com.project.adaptationflow.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,21 +17,29 @@ import java.util.UUID;
 @Setter
 @ToString
 @Embeddable
-public class UserAchievementId implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -2581733769417890041L;
-
-    @Column(name = "user_id", nullable = false)
+public class UserAchievementLinkId implements Serializable {
+    private static final long serialVersionUID = 9027461330665601241L;
     private UUID userId;
 
-    @Column(name = "achievement_id", nullable = false)
     private UUID achievementId;
+
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    public UUID getUserId() {
+        return userId;
+    }
+
+    @NotNull
+    @Column(name = "achievement_id", nullable = false)
+    public UUID getAchievementId() {
+        return achievementId;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserAchievementId entity = (UserAchievementId) o;
+        UserAchievementLinkId entity = (UserAchievementLinkId) o;
         return Objects.equals(this.achievementId, entity.achievementId) &&
                 Objects.equals(this.userId, entity.userId);
     }

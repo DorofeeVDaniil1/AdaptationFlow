@@ -1,9 +1,11 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: AdaptationFlow
-
   datasource:
-    url: jdbc:postgresql://localhost/test1
+    url: jdbc:postgresql://localhost/flow
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
