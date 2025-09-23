@@ -1,6 +1,8 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.tasks;
 
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.UsersTasksLink;
+import com.project.adaptationflow.entity.surveys.Anketa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -54,7 +56,7 @@ public class Task extends StandardEntityUUID {
     @JoinColumn(name = "task_id")
     private Set<TaskDetail> taskDetails = new LinkedHashSet<>();
 
-    @ManyToMany
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "task")
+    private Set<UsersTasksLink> userLinks = new LinkedHashSet<>();
 
 }

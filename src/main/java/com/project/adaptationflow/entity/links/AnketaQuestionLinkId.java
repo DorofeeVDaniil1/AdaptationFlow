@@ -1,4 +1,4 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

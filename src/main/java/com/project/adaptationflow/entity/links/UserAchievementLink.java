@@ -1,5 +1,6 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
+import com.project.adaptationflow.entity.gamification.Achievement;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,13 +11,13 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
-@Table(name = "users_tasks_link", indexes = {
-        @Index(name = "idx_users_tasks_link_user_id", columnList = "user_id"),
-        @Index(name = "idx_users_tasks_link_task_id", columnList = "task_id")
+@Table(name = "user_achievement_link", indexes = {
+        @Index(name = "idx_user_achievement_link_user_id", columnList = "user_id"),
+        @Index(name = "idx_user_achievement_link_achievement_id", columnList = "achievement_id")
 })
-public class UsersTasksLink {
+public class UserAchievementLink {
     @EmbeddedId
-    private UsersTasksLinkId id;
+    private UserAchievementLinkId id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -24,10 +25,10 @@ public class UsersTasksLink {
     @JoinColumn(name = "user_id", nullable = false)
     private SysUser user;
 
-    @MapsId("taskId")
+    @MapsId("achievementId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "task_id", nullable = false)
-    private Task task;
+    @JoinColumn(name = "achievement_id", nullable = false)
+    private Achievement achievement;
 
 }

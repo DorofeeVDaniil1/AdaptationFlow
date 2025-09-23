@@ -1,6 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.gamification;
 
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.UserAchievementLink;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -34,10 +35,7 @@ public class Achievement extends StandardEntityUUID {
     @Column(name = "points", nullable = false)
     private Integer points;
 
-    @ManyToMany
-    @JoinTable(name = "user_achievement_link",
-            joinColumns = @JoinColumn(name = "achievement_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "achievement")
+    private Set<UserAchievementLink> userLinks = new LinkedHashSet<>();
 
 }

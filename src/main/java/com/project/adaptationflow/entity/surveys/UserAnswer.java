@@ -1,5 +1,6 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.surveys;
 
+import com.project.adaptationflow.entity.StandardEntityUUID;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

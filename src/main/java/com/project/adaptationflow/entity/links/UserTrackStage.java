@@ -1,5 +1,6 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
+import com.project.adaptationflow.entity.tasks.TrackStage;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import lombok.Getter;

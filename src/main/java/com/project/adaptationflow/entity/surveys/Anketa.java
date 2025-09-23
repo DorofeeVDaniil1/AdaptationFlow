@@ -1,5 +1,9 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.surveys;
 
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.gamification.PointsTransaction;
+import com.project.adaptationflow.entity.links.AnketaQuestionLink;
+import com.project.adaptationflow.entity.tasks.Task;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -39,11 +43,8 @@ public class Anketa extends StandardEntityUUID {
     @Column(name = "satisfaction_rating", nullable = false)
     private Short satisfactionRating;
 
-    @ManyToMany
-    @JoinTable(name = "anketa_question_link",
-            joinColumns = @JoinColumn(name = "anketa_id"),
-            inverseJoinColumns = @JoinColumn(name = "question_id"))
-    private Set<Question> questions = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "anketa")
+    private Set<AnketaQuestionLink> questionLinks = new LinkedHashSet<>();
 
     @OneToMany
     @JoinColumn(name = "anketa_id")

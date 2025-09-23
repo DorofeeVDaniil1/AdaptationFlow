@@ -1,6 +1,17 @@
 package com.project.adaptationflow.entity.user;
 
-import com.project.adaptationflow.entity.*;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.gamification.UserLevel;
+import com.project.adaptationflow.entity.gamification.PointsTransaction;
+import com.project.adaptationflow.entity.links.NotificationUserLink;
+import com.project.adaptationflow.entity.links.UserAchievementLink;
+import com.project.adaptationflow.entity.links.UserOnboardingTrackLink;
+import com.project.adaptationflow.entity.links.UserTrackStage;
+import com.project.adaptationflow.entity.links.UsersTasksLink;
+import com.project.adaptationflow.entity.notifications.SupportRequest;
+import com.project.adaptationflow.entity.surveys.Anketa;
+import com.project.adaptationflow.entity.surveys.UserAnswer;
+import com.project.adaptationflow.entity.tasks.Progress;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -62,8 +73,8 @@ public class SysUser extends StandardEntityUUID {
     @JoinColumn(name = "user_id")
     private Set<Anketa> anketas = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "sysUsers")
-    private Set<Notification> notifications = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<NotificationUserLink> notificationLinks = new LinkedHashSet<>();
 
     @OneToMany
     @JoinColumn(name = "user_id")
@@ -80,20 +91,20 @@ public class SysUser extends StandardEntityUUID {
     @OneToMany(mappedBy = "user")
     private Set<SysUserRoleLink> roles = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "sysUsers")
-    private Set<Achievement> achievements = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UserAchievementLink> achievementLinks = new LinkedHashSet<>();
 
     @OneToMany
     @JoinColumn(name = "user_id")
     private Set<UserAnswer> userAnswers = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "sysUsers")
-    private Set<OnboardingTrack> onboardingTracks = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UserOnboardingTrackLink> onboardingTrackLinks = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "sysUsers")
-    private Set<TrackStage> trackStages = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UserTrackStage> trackStageLinks = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "sysUsers")
-    private Set<Task> tasks = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UsersTasksLink> taskLinks = new LinkedHashSet<>();
 
 }

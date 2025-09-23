@@ -1,6 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.notifications;
 
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.NotificationUserLink;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -30,10 +31,7 @@ public class Notification extends StandardEntityUUID {
     @Column(name = "read", nullable = false)
     private Boolean read = false;
 
-    @ManyToMany
-    @JoinTable(name = "notification_user_link",
-            joinColumns = @JoinColumn(name = "notification_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "notification")
+    private Set<NotificationUserLink> userLinks = new LinkedHashSet<>();
 
 }

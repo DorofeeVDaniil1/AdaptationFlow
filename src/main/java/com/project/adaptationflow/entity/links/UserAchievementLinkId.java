@@ -1,4 +1,4 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -14,28 +14,28 @@ import java.util.UUID;
 @Getter
 @Setter
 @Embeddable
-public class UserTrackStageId implements Serializable {
-    private static final long serialVersionUID = 7712854767431028656L;
-    @NotNull
-    @Column(name = "stage_id", nullable = false)
-    private UUID stageId;
-
+public class UserAchievementLinkId implements Serializable {
+    private static final long serialVersionUID = 1092624886342258426L;
     @NotNull
     @Column(name = "user_id", nullable = false)
     private UUID userId;
+
+    @NotNull
+    @Column(name = "achievement_id", nullable = false)
+    private UUID achievementId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserTrackStageId entity = (UserTrackStageId) o;
-        return Objects.equals(this.userId, entity.userId) &&
-                Objects.equals(this.stageId, entity.stageId);
+        UserAchievementLinkId entity = (UserAchievementLinkId) o;
+        return Objects.equals(this.achievementId, entity.achievementId) &&
+                Objects.equals(this.userId, entity.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, stageId);
+        return Objects.hash(achievementId, userId);
     }
 
 }

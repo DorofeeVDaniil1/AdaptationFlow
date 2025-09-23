@@ -1,6 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.tasks;
 
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.UserTrackStage;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -41,7 +42,7 @@ public class TrackStage extends StandardEntityUUID {
     @JoinColumn(name = "track_stage_id")
     private Set<Task> tasks = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "trackStages")
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "stage")
+    private Set<UserTrackStage> userLinks = new LinkedHashSet<>();
 
 }

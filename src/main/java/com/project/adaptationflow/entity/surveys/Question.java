@@ -1,5 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.surveys;
 
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.AnketaQuestionLink;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -21,8 +23,8 @@ public class Question extends StandardEntityUUID {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
 
-    @ManyToMany(mappedBy = "questions")
-    private Set<Anketa> anketas = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "question")
+    private Set<AnketaQuestionLink> anketaLinks = new LinkedHashSet<>();
 
     @OneToMany
     @JoinColumn(name = "question_id")

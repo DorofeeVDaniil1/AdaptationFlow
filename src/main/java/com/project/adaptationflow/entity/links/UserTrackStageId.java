@@ -1,4 +1,4 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -14,28 +14,28 @@ import java.util.UUID;
 @Getter
 @Setter
 @Embeddable
-public class UsersTasksLinkId implements Serializable {
-    private static final long serialVersionUID = -8733541137490251069L;
+public class UserTrackStageId implements Serializable {
+    private static final long serialVersionUID = 7712854767431028656L;
+    @NotNull
+    @Column(name = "stage_id", nullable = false)
+    private UUID stageId;
+
     @NotNull
     @Column(name = "user_id", nullable = false)
     private UUID userId;
-
-    @NotNull
-    @Column(name = "task_id", nullable = false)
-    private UUID taskId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UsersTasksLinkId entity = (UsersTasksLinkId) o;
+        UserTrackStageId entity = (UserTrackStageId) o;
         return Objects.equals(this.userId, entity.userId) &&
-                Objects.equals(this.taskId, entity.taskId);
+                Objects.equals(this.stageId, entity.stageId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, taskId);
+        return Objects.hash(userId, stageId);
     }
 
 }

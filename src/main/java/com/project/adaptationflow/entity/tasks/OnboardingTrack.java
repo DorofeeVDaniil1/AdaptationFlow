@@ -1,6 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.tasks;
 
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.links.UserOnboardingTrackLink;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -27,10 +28,7 @@ public class OnboardingTrack extends StandardEntityUUID {
     @JoinColumn(name = "onboarding_track_id")
     private Set<TrackStage> trackStages = new LinkedHashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "user_onboarding_track_link",
-            joinColumns = @JoinColumn(name = "track_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "track")
+    private Set<UserOnboardingTrackLink> userLinks = new LinkedHashSet<>();
 
 }

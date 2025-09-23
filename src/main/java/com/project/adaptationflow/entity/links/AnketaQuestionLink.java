@@ -1,5 +1,7 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.links;
 
+import com.project.adaptationflow.entity.surveys.Anketa;
+import com.project.adaptationflow.entity.surveys.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

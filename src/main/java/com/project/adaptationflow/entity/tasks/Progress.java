@@ -1,5 +1,6 @@
-package com.project.adaptationflow.entity;
+package com.project.adaptationflow.entity.tasks;
 
+import com.project.adaptationflow.entity.StandardEntityUUID;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -20,9 +21,6 @@ import java.util.UUID;
         @Index(name = "idx_progress_assignment_task", columnList = "assignment_task")
 })
 public class Progress extends StandardEntityUUID {
-    @Id
-    @Column(name = "id", nullable = false)
-    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
