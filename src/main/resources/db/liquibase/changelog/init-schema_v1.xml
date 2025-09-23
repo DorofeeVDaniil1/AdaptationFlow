@@ -40,10 +40,10 @@
             <column name="updated_by" type="VARCHAR(50)"/>
             <column name="delete_ts" type="timestamp"/>
             <column name="deleted_by" type="VARCHAR(50)"/>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="task_id" type="char(36)">
+            <column name="task_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="difficulty_rating" type="SMALLINT">
@@ -56,10 +56,10 @@
     </changeSet>
     <changeSet id="1755872126633-3" author="Daniil">
         <createTable tableName="anketa_question_link">
-            <column name="anketa_id" type="char(36)">
+            <column name="anketa_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="anketa_question_link_pkey"/>
             </column>
-            <column name="question_id" type="char(36)">
+            <column name="question_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="anketa_question_link_pkey"/>
             </column>
         </createTable>
@@ -69,7 +69,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="answer_option_pkey"/>
             </column>
-            <column name="question_id" type="char(36)">
+            <column name="question_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="answer_text" type="CLOB">
@@ -105,10 +105,10 @@
     </changeSet>
     <changeSet id="1755872126633-6" author="Daniil">
         <createTable tableName="notification_user_link">
-            <column name="notification_id" type="char(36)">
+            <column name="notification_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="notification_user_link_pkey"/>
             </column>
-            <column name="user_id" type="char(36)"/>
+            <column name="user_id" type="UUID"/>
         </createTable>
     </changeSet>
     <changeSet id="1755872126633-7" author="Daniil">
@@ -136,7 +136,7 @@
             <column name="entity_type" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="entity_id" type="char(36)">
+            <column name="entity_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="points" type="INT">
@@ -159,13 +159,13 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="points_transaction_pkey"/>
             </column>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="points_rule_id" type="char(36)">
+            <column name="points_rule_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="anketa_id" type="char(36)"/>
+            <column name="anketa_id" type="UUID"/>
             <column name="points" type="INT">
                 <constraints nullable="false"/>
             </column>
@@ -182,13 +182,13 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="progress_pkey"/>
             </column>
-            <column name="detail_id" type="char(36)"/>
+            <column name="detail_id" type="UUID"/>
             <column name="completed_at" type="timestamp"/>
             <column name="comment" type="CLOB"/>
-            <column name="assignment_user" type="char(36)">
+            <column name="assignment_user" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="assignment_task" type="char(36)">
+            <column name="assignment_task" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="create_ts" type="timestamp"/>
@@ -240,7 +240,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="support_request_pkey"/>
             </column>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="question" type="CLOB">
@@ -261,10 +261,10 @@
     </changeSet>
     <changeSet id="1755872126633-14" author="Daniil">
         <createTable tableName="sys_user_role_link">
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="sys_user_role_link_pkey"/>
             </column>
-            <column name="role_id" type="char(36)">
+            <column name="role_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="sys_user_role_link_pkey"/>
             </column>
         </createTable>
@@ -288,7 +288,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="last_login_date" type="timestamp"/>
-            <column name="user_level_id" remarks="ID для уровня" type="char(36)"/>
+            <column name="user_level_id" remarks="ID для уровня" type="UUID"/>
             <column name="create_ts" type="timestamp"/>
             <column name="created_by" type="VARCHAR(50)"/>
             <column name="update_ts" type="timestamp"/>
@@ -302,7 +302,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="task_detail_pkey"/>
             </column>
-            <column name="task_id" type="char(36)">
+            <column name="task_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">
@@ -325,7 +325,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="task_detail_additional_info_pkey"/>
             </column>
-            <column name="task_detail_id" type="char(36)">
+            <column name="task_detail_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="document_url" type="CLOB">
@@ -347,7 +347,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="tasks_pkey"/>
             </column>
-            <column name="track_stage_id" type="char(36)">
+            <column name="track_stage_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">
@@ -371,7 +371,7 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="track_stage_pkey"/>
             </column>
-            <column name="onboarding_track_id" type="char(36)">
+            <column name="onboarding_track_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="title" type="VARCHAR(255)">
@@ -394,10 +394,10 @@
             <column name="awarded_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="user_achievement_link_pkey"/>
             </column>
-            <column name="achievement_id" type="char(36)">
+            <column name="achievement_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="user_achievement_link_pkey"/>
             </column>
         </createTable>
@@ -428,10 +428,10 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="user_onboarding_track_link_pkey"/>
             </column>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="track_id" type="char(36)">
+            <column name="track_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="started_at" type="timestamp">
@@ -453,10 +453,10 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="user_track_stage_pkey"/>
             </column>
-            <column name="uot_id" type="char(36)">
+            <column name="uot_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="stage_id" type="char(36)">
+            <column name="stage_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="VARCHAR(20)">
@@ -475,10 +475,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="due_date" type="timestamp"/>
-            <column name="user_id" type="char(36)">
+            <column name="user_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="users_tasks_link_pkey"/>
             </column>
-            <column name="task_id" type="char(36)">
+            <column name="task_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="users_tasks_link_pkey"/>
             </column>
         </createTable>
