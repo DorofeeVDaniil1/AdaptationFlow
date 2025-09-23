@@ -12,7 +12,7 @@
   </component>
   <component name="AmplicodePersistenceUnitSettings">
     <persistence-units>
-      <persistence-unit name="Default" defaultIncludeChangeLogFile="src/main/resources/db/changelog/db.changelog-master.xml">
+      <persistence-unit name="Default" defaultIncludeChangeLogFile="src/main/resources/db/liquibase/master.xml" defaultSearchScope="Project">
         <packages>
           <package value="com.project.adaptationflow" />
         </packages>

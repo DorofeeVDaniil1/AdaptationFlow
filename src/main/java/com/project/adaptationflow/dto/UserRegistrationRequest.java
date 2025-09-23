@@ -27,6 +27,8 @@ public class UserRegistrationRequest {
     @Email
     @Size(max = 254)
     private String email;
+    
+    private String role;
 
     public String getLogin() {
         return login;
@@ -66,5 +68,13 @@ public class UserRegistrationRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

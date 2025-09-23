@@ -1,56 +1,41 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
-
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "points_transaction", indexes = {
-        @Index(name = "points_transaction_idx_points_transaction_user_id", columnList = "user_id")
+        @Index(name = "idx_points_transaction_user", columnList = "user_id"),
+        @Index(name = "idx_points_transaction_points_rule_id", columnList = "points_rule_id"),
+        @Index(name = "idx_points_transaction_anketa_id", columnList = "anketa_id")
 })
 public class PointsTransaction extends StandardEntityUUID {
-    private static final long serialVersionUID = -8403244020063981302L;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", nullable = false)
     private SysUser user;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "points_rule_id", nullable = false)
     private PointsRule pointsRule;
 
-    private Anketa anketa;
-
-    private Integer points;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    public SysUser getUser() {
-        return user;
-    }
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "points_rule_id", nullable = false)
-    public PointsRule getPointsRule() {
-        return pointsRule;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "anketa_id")
-    public Anketa getAnketa() {
-        return anketa;
-    }
+    private Anketa anketa;
 
     @NotNull
     @Column(name = "points", nullable = false)
-    public Integer getPoints() {
-        return points;
-    }
+    private Integer points;
 
 }

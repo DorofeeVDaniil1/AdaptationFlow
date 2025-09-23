@@ -2,37 +2,44 @@ package com.project.adaptationflow.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.UUID;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "answer_option")
+@Table(name = "answer_option", indexes = {
+        @Index(name = "idx_answer_option_question_id", columnList = "question_id")
+})
 public class AnswerOption extends StandardEntityUUID {
-    private static final long serialVersionUID = 9046812293144395439L;
-    private QuestionOption question;
-
-    private String answerText;
+    @Id
+    @Column(name = "id", nullable = false)
+    private UUID id;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_id", nullable = false)
-    public QuestionOption getQuestion() {
-        return question;
-    }
+    private Question question;
 
     @NotNull
     @Column(name = "answer_text", nullable = false, length = Integer.MAX_VALUE)
-    public String getAnswerText() {
-        return answerText;
-    }
+    private String answerText;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Column(name = "is_correct")
+    private Boolean isCorrect;
+
+    @OneToMany
+    @JoinColumn(name = "answer_option_id")
+    private Set<UserAnswer> userAnswers = new LinkedHashSet<>();
 
 }

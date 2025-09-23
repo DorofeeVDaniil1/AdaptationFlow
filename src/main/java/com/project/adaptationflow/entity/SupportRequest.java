@@ -1,60 +1,42 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "support_request")
+@Table(name = "support_request", indexes = {
+        @Index(name = "idx_support_request_user_id", columnList = "user_id")
+})
 public class SupportRequest extends StandardEntityUUID {
-    private static final long serialVersionUID = -7907197298521401027L;
-    private SysUser user;
-
-    private String question;
-
-    private String answer;
-
-    private String status;
-
-    private LocalDateTime answeredAt;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    public SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @NotNull
     @Column(name = "question", nullable = false, length = Integer.MAX_VALUE)
-    public String getQuestion() {
-        return question;
-    }
+    private String question;
 
     @Column(name = "answer", length = Integer.MAX_VALUE)
-    public String getAnswer() {
-        return answer;
-    }
+    private String answer;
 
     @Size(max = 20)
     @NotNull
     @Column(name = "status", nullable = false, length = 20)
-    public String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Column(name = "answered_at")
-    public LocalDateTime getAnsweredAt() {
-        return answeredAt;
-    }
+    private Instant answeredAt;
 
 }

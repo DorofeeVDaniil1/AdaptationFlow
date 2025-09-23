@@ -14,28 +14,28 @@ import java.util.UUID;
 @Getter
 @Setter
 @Embeddable
-public class UserAchievementLinkId implements Serializable {
-    private static final long serialVersionUID = 1092624886342258426L;
+public class AnketaQuestionLinkId implements Serializable {
+    private static final long serialVersionUID = -8114457840303167723L;
     @NotNull
-    @Column(name = "user_id", nullable = false)
-    private UUID userId;
+    @Column(name = "anketa_id", nullable = false)
+    private UUID anketaId;
 
     @NotNull
-    @Column(name = "achievement_id", nullable = false)
-    private UUID achievementId;
+    @Column(name = "question_id", nullable = false)
+    private UUID questionId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserAchievementLinkId entity = (UserAchievementLinkId) o;
-        return Objects.equals(this.achievementId, entity.achievementId) &&
-                Objects.equals(this.userId, entity.userId);
+        AnketaQuestionLinkId entity = (AnketaQuestionLinkId) o;
+        return Objects.equals(this.questionId, entity.questionId) &&
+                Objects.equals(this.anketaId, entity.anketaId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(achievementId, userId);
+        return Objects.hash(questionId, anketaId);
     }
 
 }

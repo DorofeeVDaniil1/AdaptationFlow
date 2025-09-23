@@ -10,24 +10,24 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
-@Table(name = "users_tasks_link", indexes = {
-        @Index(name = "idx_users_tasks_link_user_id", columnList = "user_id"),
-        @Index(name = "idx_users_tasks_link_task_id", columnList = "task_id")
+@Table(name = "user_track_stage", indexes = {
+        @Index(name = "idx_user_track_stage_stage_id", columnList = "stage_id"),
+        @Index(name = "idx_user_track_stage_user_id", columnList = "user_id")
 })
-public class UsersTasksLink {
+public class UserTrackStage {
     @EmbeddedId
-    private UsersTasksLinkId id;
+    private UserTrackStageId id;
+
+    @MapsId("stageId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "stage_id", nullable = false)
+    private TrackStage stage;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
     private SysUser user;
-
-    @MapsId("taskId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "task_id", nullable = false)
-    private Task task;
 
 }

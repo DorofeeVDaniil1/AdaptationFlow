@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1755872126633-1" author="Daniil">
+        <createTable remarks="Таблица с достижениями пользователя" tableName="achievement">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="achievement_pkey"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+            <column name="code" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-2" author="Daniil">
+        <createTable remarks="Таблица, анкеты пользователя, у каждого задания нужно в конце пройти небольшой тест."
+                     tableName="anketa">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="anketa_pkey"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="difficulty_rating" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="satisfaction_rating" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-3" author="Daniil">
+        <createTable tableName="anketa_question_link">
+            <column name="anketa_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="anketa_question_link_pkey"/>
+            </column>
+            <column name="question_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="anketa_question_link_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-4" author="Daniil">
+        <createTable tableName="answer_option">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="answer_option_pkey"/>
+            </column>
+            <column name="question_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer_text" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-5" author="Daniil">
+        <createTable remarks="Таблица для логирования уведомлений" tableName="notification">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="notification_pkey"/>
+            </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sent_at" type="timestamp"/>
+            <column name="read" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-6" author="Daniil">
+        <createTable tableName="notification_user_link">
+            <column name="notification_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="notification_user_link_pkey"/>
+            </column>
+            <column name="user_id" type="char(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-7" author="Daniil">
+        <createTable remarks="Общий трек адаптации. Инженер, Юрист и.т.д" tableName="onboarding_track">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="onboarding_track_pkey"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-8" author="Daniil">
+        <createTable tableName="points_rule">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="points_rule_pkey"/>
+            </column>
+            <column name="entity_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="entity_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-9" author="Daniil">
+        <createTable remarks="Таблица для подсчета очков пользователя" tableName="points_transaction">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="points_transaction_pkey"/>
+            </column>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="points_rule_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="anketa_id" type="char(36)"/>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-10" author="Daniil">
+        <createTable remarks="Таблица для отслеживания прогресса пользователя" tableName="progress">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="progress_pkey"/>
+            </column>
+            <column name="detail_id" type="char(36)"/>
+            <column name="completed_at" type="timestamp"/>
+            <column name="comment" type="CLOB"/>
+            <column name="assignment_user" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assignment_task" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-11" author="Daniil">
+        <createTable tableName="question_option">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="question_option_pkey"/>
+            </column>
+            <column name="question_text" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-12" author="Daniil">
+        <createTable tableName="role">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-13" author="Daniil">
+        <createTable remarks="Таблица для заявок тех поддержке, вопросов" tableName="support_request">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="support_request_pkey"/>
+            </column>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="CLOB"/>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answered_at" type="timestamp"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-14" author="Daniil">
+        <createTable tableName="sys_user_role_link">
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sys_user_role_link_pkey"/>
+            </column>
+            <column name="role_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sys_user_role_link_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-15" author="Daniil">
+        <createTable remarks="Главная таблица пользователя" tableName="sys_users">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sys_users_pkey"/>
+            </column>
+            <column name="login" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="patronymic" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="is_active" remarks="Пометка" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_login_date" type="timestamp"/>
+            <column name="user_level_id" remarks="ID для уровня" type="char(36)"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-16" author="Daniil">
+        <createTable remarks="Конкретные задания для общего задания, пошаговые" tableName="task_detail">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="task_detail_pkey"/>
+            </column>
+            <column name="task_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-17" author="Daniil">
+        <createTable remarks="Дополнительная информация, для задания," tableName="task_detail_additional_info">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="task_detail_additional_info_pkey"/>
+            </column>
+            <column name="task_detail_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_url" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-18" author="Daniil">
+        <createTable remarks="Таблица для общего задания на этап" tableName="tasks">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tasks_pkey"/>
+            </column>
+            <column name="track_stage_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired_time_task" type="timestamp"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-19" author="Daniil">
+        <createTable remarks="Стадии Адаптации профессии. Новичок, Опытный, продвинутый" tableName="track_stage">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="track_stage_pkey"/>
+            </column>
+            <column name="onboarding_track_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="order_index" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-20" author="Daniil">
+        <createTable tableName="user_achievement_link">
+            <column name="awarded_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_achievement_link_pkey"/>
+            </column>
+            <column name="achievement_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_achievement_link_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-21" author="Daniil">
+        <createTable remarks="Таблица уровней пользователей" tableName="user_level">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_level_pkey"/>
+            </column>
+            <column name="title" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_points" remarks="Минимальное количество очков, чтобы уровень" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_points" remarks="Максимальное количество очков для уровня" type="INT"/>
+            <column name="description" type="CLOB"/>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-22" author="Daniil">
+        <createTable tableName="user_onboarding_track_link">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_onboarding_track_link_pkey"/>
+            </column>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="track_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="started_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="timestamp"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-23" author="Daniil">
+        <createTable tableName="user_track_stage_link">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_track_stage_pkey"/>
+            </column>
+            <column name="uot_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stage_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unlocked_at" type="timestamp"/>
+            <column name="completed_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-24" author="Daniil">
+        <createTable tableName="users_tasks_link">
+            <column name="assigned_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="timestamp"/>
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_tasks_link_pkey"/>
+            </column>
+            <column name="task_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_tasks_link_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1755872126633-25" author="Daniil">
+        <addUniqueConstraint columnNames="code" constraintName="achievement_code_key" tableName="achievement"/>
+    </changeSet>
+    <changeSet id="1755872126633-26" author="Daniil">
+        <addUniqueConstraint columnNames="name" constraintName="role_name_key" tableName="role"/>
+    </changeSet>
+    <changeSet id="1755872126633-27" author="Daniil">
+        <addUniqueConstraint columnNames="title" constraintName="user_level_title_key" tableName="user_level"/>
+    </changeSet>
+    <changeSet id="1755872126633-28" author="Daniil">
+        <createIndex indexName="points_rule_uq_points_rule" tableName="points_rule" unique="true">
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-31" author="Daniil">
+        <createIndex indexName="track_stage_uq_ts_order" tableName="track_stage" unique="true">
+            <column name="onboarding_track_id"/>
+            <column name="order_index"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-32" author="Daniil">
+        <createIndex indexName="user_onboarding_track_link_uq_uot" tableName="user_onboarding_track_link" unique="true">
+            <column name="user_id"/>
+            <column name="track_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-34" author="Daniil">
+        <createIndex indexName="user_track_stage_uq_uts" tableName="user_track_stage_link" unique="true">
+            <column name="uot_id"/>
+            <column name="stage_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-37" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="anketa_id" baseTableName="anketa_question_link"
+                                 constraintName="fk_anketa_question_link_anketa_id_anketa_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="anketa"/>
+    </changeSet>
+    <changeSet id="1755872126633-38" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="anketa_question_link"
+                                 constraintName="fk_anketa_question_link_question_id_question_option_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="question_option"/>
+    </changeSet>
+    <changeSet id="1755872126633-39" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="anketa"
+                                 constraintName="fk_anketa_task_id_tasks_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="tasks"/>
+    </changeSet>
+    <changeSet id="1755872126633-40" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="anketa"
+                                 constraintName="fk_anketa_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-41" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="answer_option"
+                                 constraintName="fk_answer_option_question_id_question_option_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="question_option"/>
+    </changeSet>
+    <changeSet id="1755872126633-42" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="notification_id" baseTableName="notification_user_link"
+                                 constraintName="fk_notification_user_link_notification_id_notification_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="notification"/>
+    </changeSet>
+    <changeSet id="1755872126633-43" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notification_user_link"
+                                 constraintName="fk_notification_user_link_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-44" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="anketa_id" baseTableName="points_transaction"
+                                 constraintName="fk_points_transaction_anketa_id_anketa_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="anketa"/>
+    </changeSet>
+    <changeSet id="1755872126633-45" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="points_rule_id" baseTableName="points_transaction"
+                                 constraintName="fk_points_transaction_points_rule_id_points_rule_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="points_rule"/>
+    </changeSet>
+    <changeSet id="1755872126633-46" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="points_transaction"
+                                 constraintName="fk_points_transaction_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+
+        <createIndex indexName="points_transaction_idx_points_transaction_user_id" tableName="points_transaction">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-47" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="detail_id" baseTableName="progress"
+                                 constraintName="fk_progress_detail_id_task_detail_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="task_detail"/>
+    </changeSet>
+    <changeSet id="1755872126633-48" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="support_request"
+                                 constraintName="fk_support_request_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-49" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="sys_user_role_link"
+                                 constraintName="fk_sys_user_role_link_role_id_role_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1755872126633-50" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sys_user_role_link"
+                                 constraintName="fk_sys_user_role_link_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-51" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_level_id" baseTableName="sys_users"
+                                 constraintName="fk_sys_users_user_level_id_user_level_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="user_level"/>
+    </changeSet>
+    <changeSet id="1755872126633-52" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="task_detail_id" baseTableName="task_detail_additional_info"
+                                 constraintName="fk_task_detail_additional_info_task_detail_id_task_detail_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="task_detail"/>
+    </changeSet>
+    <changeSet id="1755872126633-53" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="task_detail"
+                                 constraintName="fk_task_detail_task_id_tasks_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="tasks"/>
+    </changeSet>
+    <changeSet id="1755872126633-54" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="track_stage_id" baseTableName="tasks"
+                                 constraintName="fk_tasks_track_stage_id_track_stage_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="track_stage"/>
+
+        <createIndex indexName="tasks_idx_task_stage_id" tableName="tasks">
+            <column name="track_stage_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-55" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="onboarding_track_id" baseTableName="track_stage"
+                                 constraintName="fk_track_stage_onboarding_track_id_onboarding_track_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="onboarding_track"/>
+    </changeSet>
+    <changeSet id="1755872126633-56" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="achievement_id" baseTableName="user_achievement_link"
+                                 constraintName="fk_user_achievement_link_achievement_id_achievement_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="achievement"/>
+    </changeSet>
+    <changeSet id="1755872126633-57" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_achievement_link"
+                                 constraintName="fk_user_achievement_link_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-58" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="track_id" baseTableName="user_onboarding_track_link"
+                                 constraintName="fk_user_onboarding_track_link_track_id_onboarding_track_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="onboarding_track"/>
+    </changeSet>
+    <changeSet id="1755872126633-59" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_onboarding_track_link"
+                                 constraintName="fk_user_onboarding_track_link_user_id_sys_users_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id" referencedTableName="sys_users"/>
+    </changeSet>
+    <changeSet id="1755872126633-60" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="stage_id" baseTableName="user_track_stage_link"
+                                 constraintName="fk_user_track_stage_stage_id_track_stage_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="track_stage"/>
+    </changeSet>
+    <changeSet id="1755872126633-61" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="uot_id" baseTableName="user_track_stage_link"
+                                 constraintName="fk_user_track_stage_uot_id_user_onboarding_track_link_id"
+                                 onDelete="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="user_onboarding_track_link"/>
+
+        <createIndex indexName="user_track_stage_idx_user_track_stage_uot_id" tableName="user_track_stage_link">
+            <column name="uot_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-62" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="users_tasks_link"
+                                 constraintName="fk_users_tasks_link_task_id_tasks_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="tasks"/>
+
+        <createIndex indexName="users_tasks_link_idx_users_tasks_link_task_id" tableName="users_tasks_link">
+            <column name="task_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1755872126633-63" author="Daniil">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="users_tasks_link"
+                                 constraintName="fk_users_tasks_link_user_id_sys_users_id" onDelete="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="sys_users"/>
+
+        <createIndex indexName="users_tasks_link_idx_users_tasks_link_user_id" tableName="users_tasks_link">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

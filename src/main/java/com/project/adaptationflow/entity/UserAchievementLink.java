@@ -1,53 +1,33 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "user_achievement_link")
-public class UserAchievementLink implements Serializable {
-    private static final long serialVersionUID = -7268812551987606204L;
-    private UserAchievementLinkId id;
-
-    private SysUser user;
-
-    private Achievement achievement;
-
-    private LocalDateTime awardedAt;
-
+@Table(name = "user_achievement_link", indexes = {
+        @Index(name = "idx_user_achievement_link_user_id", columnList = "user_id"),
+        @Index(name = "idx_user_achievement_link_achievement_id", columnList = "achievement_id")
+})
+public class UserAchievementLink {
     @EmbeddedId
-    public UserAchievementLinkId getId() {
-        return id;
-    }
+    private UserAchievementLinkId id;
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
-    public SysUser getUser() {
-        return user;
-    }
+    private SysUser user;
 
     @MapsId("achievementId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "achievement_id", nullable = false)
-    public Achievement getAchievement() {
-        return achievement;
-    }
-
-    @NotNull
-    @Column(name = "awarded_at", nullable = false)
-    public LocalDateTime getAwardedAt() {
-        return awardedAt;
-    }
+    private Achievement achievement;
 
 }

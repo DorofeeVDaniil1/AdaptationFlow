@@ -15,5 +15,6 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="/db/liquibase/changelog/init-schema.xml" relativeToChangelogFile="false"/>
+<!--    <include file="db/liquibase/changelog/init-schema-v1.xml"/>-->
 
 </databaseChangeLog>

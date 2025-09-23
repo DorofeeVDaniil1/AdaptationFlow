@@ -3,37 +3,26 @@ package com.project.adaptationflow.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Embeddable
 public class UsersTasksLinkId implements Serializable {
-    private static final long serialVersionUID = -4134527725970835515L;
-    private UUID userId;
-
-    private UUID taskId;
-
+    private static final long serialVersionUID = -8733541137490251069L;
     @NotNull
     @Column(name = "user_id", nullable = false)
-    public UUID getUserId() {
-        return userId;
-    }
+    private UUID userId;
 
     @NotNull
     @Column(name = "task_id", nullable = false)
-    public UUID getTaskId() {
-        return taskId;
-    }
+    private UUID taskId;
 
     @Override
     public boolean equals(Object o) {

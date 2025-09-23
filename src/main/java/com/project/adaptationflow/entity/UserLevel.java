@@ -1,69 +1,39 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "user_level", indexes = {
-        @Index(name = "user_level_title_key", columnList = "title", unique = true),
-        @Index(name = "user_level_user_level_title_key", columnList = "title", unique = true)
+@Table(name = "user_level", uniqueConstraints = {
+        @UniqueConstraint(name = "uq_user_level_title", columnNames = {"title"})
 })
 public class UserLevel extends StandardEntityUUID {
-    private static final long serialVersionUID = 3755788269480838544L;
-    private String title;
-
-    private Integer minPoints;
-
-    private Integer maxPoints;
-
-    private String description;
-
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
-
     @Size(max = 100)
     @NotNull
     @Column(name = "title", nullable = false, length = 100)
-    public String getTitle() {
-        return title;
-    }
+    private String title;
 
     @NotNull
     @Column(name = "min_points", nullable = false)
-    public Integer getMinPoints() {
-        return minPoints;
-    }
+    private Integer minPoints;
 
     @Column(name = "max_points")
-    public Integer getMaxPoints() {
-        return maxPoints;
-    }
+    private Integer maxPoints;
 
     @Column(name = "description", length = Integer.MAX_VALUE)
-    public String getDescription() {
-        return description;
-    }
+    private String description;
 
-    @Size(max = 50)
-    @Column(name = "deleted_by", length = 50)
-    public String getDeletedBy() {
-        return deletedBy;
-    }
-
-    @OneToMany(mappedBy = "userLevel")
-    public Set<SysUser> getSysUsers() {
-        return sysUsers;
-    }
+    @OneToMany
+    @JoinColumn(name = "user_level_id")
+    private Set<SysUser> sysUsers = new LinkedHashSet<>();
 
 }

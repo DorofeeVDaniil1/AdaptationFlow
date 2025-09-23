@@ -1,74 +1,52 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "anketa")
+@Table(name = "anketa", indexes = {
+        @Index(name = "idx_anketa_user_id", columnList = "user_id"),
+        @Index(name = "idx_anketa_task_id", columnList = "task_id")
+})
 public class Anketa extends StandardEntityUUID {
-    private static final long serialVersionUID = -2584156072765997349L;
-
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", nullable = false)
     private SysUser user;
 
-    private Task task;
-
-    private Short difficultyRating;
-
-    private Short satisfactionRating;
-
-    private Set<QuestionOption> questionOptions = new LinkedHashSet<>();
-
-    private Set<PointsTransaction> pointsTransactions = new LinkedHashSet<>();
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    public SysUser getUser() {
-        return user;
-    }
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "task_id", nullable = false)
-    public Task getTask() {
-        return task;
-    }
+    private Task task;
 
     @NotNull
     @Column(name = "difficulty_rating", nullable = false)
-    public Short getDifficultyRating() {
-        return difficultyRating;
-    }
+    private Short difficultyRating;
 
     @NotNull
     @Column(name = "satisfaction_rating", nullable = false)
-    public Short getSatisfactionRating() {
-        return satisfactionRating;
-    }
+    private Short satisfactionRating;
 
     @ManyToMany
     @JoinTable(name = "anketa_question_link",
             joinColumns = @JoinColumn(name = "anketa_id"),
             inverseJoinColumns = @JoinColumn(name = "question_id"))
-    public Set<QuestionOption> getQuestionOptions() {
-        return questionOptions;
-    }
+    private Set<Question> questions = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "anketa")
-    public Set<PointsTransaction> getPointsTransactions() {
-        return pointsTransactions;
-    }
+    @OneToMany
+    @JoinColumn(name = "anketa_id")
+    private Set<PointsTransaction> pointsTransactions = new LinkedHashSet<>();
 
 }

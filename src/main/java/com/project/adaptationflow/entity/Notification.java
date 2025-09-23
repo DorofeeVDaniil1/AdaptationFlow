@@ -1,56 +1,39 @@
 package com.project.adaptationflow.entity;
 
+import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "notification")
+@Table(name = "notification", indexes = {
+        @Index(name = "idx_notification_type", columnList = "type")
+})
 public class Notification extends StandardEntityUUID {
-    private static final long serialVersionUID = -5705774046250719310L;
-    private String type;
-
-    private LocalDateTime sentAt;
-
-    private Boolean read = false;
-
-    private Set<SysUser> sysUsers = new LinkedHashSet<>();
-
     @Size(max = 50)
     @NotNull
     @Column(name = "type", nullable = false, length = 50)
-    public String getType() {
-        return type;
-    }
+    private String type;
 
     @Column(name = "sent_at")
-    public LocalDateTime getSentAt() {
-        return sentAt;
-    }
+    private Instant sentAt;
 
     @NotNull
     @Column(name = "read", nullable = false)
-    public Boolean getRead() {
-        return read;
-    }
+    private Boolean read = false;
 
     @ManyToMany
     @JoinTable(name = "notification_user_link",
             joinColumns = @JoinColumn(name = "notification_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    public Set<SysUser> getSysUsers() {
-        return sysUsers;
-    }
+    private Set<SysUser> sysUsers = new LinkedHashSet<>();
 
 }
