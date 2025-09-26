@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
         // Загружаем роли через join-сущность
-        Set<GrantedAuthority> authorities = user.getRoleLinks().stream()
+        Set<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(SysUserRoleLink::getRole)                  // достаём Role
                 .map(Role::getName)                             // достаём имя роли
                 .map(SimpleGrantedAuthority::new)               // превращаем в GrantedAuthority

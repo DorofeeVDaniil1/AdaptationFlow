@@ -53,35 +53,36 @@ public class SysUserService {
     }
 
 
-public SysUser userRegister(UserRegistrationRequest request) {
-    // Check if user already exists
-    if (existsByLogin(request.getLogin())) {
-        throw new RuntimeException("User with login " + request.getLogin() + " already exists");
+    public SysUser userRegister(UserRegistrationRequest request) {
+        // Check if user already exists
+        if (existsByLogin(request.getLogin())) {
+            throw new RuntimeException("User with login " + request.getLogin() + " already exists");
+        }
+
+        // Encode password
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
+
+        // Create user
+        SysUser user = new SysUser();
+        user.setLogin(request.getLogin());
+        user.setPasswordHash(encodedPassword);
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
+        user.setIsActive(true);
+
+        // Save user
+        SysUser savedUser = save(user);
+
+        // Assign role
+        Optional<Role> role = roleRepository.findByName(request.getRole());
+        if (role.isPresent()) {
+            assignRole(savedUser, role.get());
+        } else {
+            throw new RuntimeException("Role not found: " + request.getRole());
+        }
+        return savedUser;
     }
-
-    // Encode password
-    String encodedPassword = passwordEncoder.encode(request.getPassword());
-
-    // Create user
-    SysUser user = new SysUser();
-    user.setLogin(request.getLogin());
-    user.setPasswordHash(encodedPassword);
-    user.setFirstName(request.getFirstName());
-    user.setLastName(request.getLastName());
-    user.setEmail(request.getEmail());
-    user.setIsActive(true);
-
-    // Save user
-    SysUser savedUser = save(user);
-
-    // Assign role
-    Role role = roleRepository.findByName(request.getRole())
-            .orElseThrow(() -> new RuntimeException("Role not found: " + request.getRole()));
-    
-    assignRole(savedUser, role);
-    
-    return savedUser;
-}
 
     public String authenticate(String login, String password) {
         // Проверка пароля через AuthenticationManager
@@ -94,7 +95,7 @@ public SysUser userRegister(UserRegistrationRequest request) {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         // Собираем роли через join-сущность
-        var authorities = user.getRoleLinks().stream()
+        var authorities = user.getRoles().stream()
                 .map(SysUserRoleLink::getRole)          // достаём объект Role
                 .map(Role::getName)                     // берём имя роли
                 .map(SimpleGrantedAuthority::new)       // превращаем в GrantedAuthority

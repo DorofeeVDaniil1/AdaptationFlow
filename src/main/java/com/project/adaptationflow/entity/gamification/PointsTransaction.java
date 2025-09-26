@@ -1,7 +1,5 @@
-package com.project.adaptationflow.entity.gamification;
+package com.project.adaptationflow.entity;
 
-import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.surveys.Anketa;
 import com.project.adaptationflow.entity.user.SysUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

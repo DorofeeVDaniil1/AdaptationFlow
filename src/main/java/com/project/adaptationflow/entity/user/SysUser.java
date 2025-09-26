@@ -89,7 +89,7 @@ public class SysUser extends StandardEntityUUID {
     private Set<SupportRequest> supportRequests = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<SysUserRoleLink> roleLinks = new LinkedHashSet<>();
+    private Set<SysUserRoleLink> roles = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<UserAchievementLink> achievementLinks = new LinkedHashSet<>();

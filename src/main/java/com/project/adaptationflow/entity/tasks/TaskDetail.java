@@ -1,6 +1,5 @@
-package com.project.adaptationflow.entity.tasks;
+package com.project.adaptationflow.entity;
 
-import com.project.adaptationflow.entity.StandardEntityUUID;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
