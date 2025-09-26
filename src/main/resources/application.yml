@@ -1,21 +1,22 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: AdaptationFlow
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/db
+    url: jdbc:postgresql://localhost/flow
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
-
   jpa:
+    generate-ddl: true
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update   # или validate, если база уже создана
-
+      ddl-auto: validate
   data:
     jpa:
       repositories:
@@ -25,10 +26,4 @@ spring:
     change-log: classpath:/db/liquibase/master.xml
 jwt:
   secret: "your-256-bit-secret-your-very-long-secret-key-for-hmac"
-  expiration-ms: 360000000  # время жизни токена в миллисекундах (10 час)
-logging:
-  level:
-    root: INFO                 # общий уровень логов
-    com.project.adaptationflow.config.JwtAuthenticationFilter: DEBUG  # подробное логирование фильтра JWT
-    com.project.adaptationflow: DEBUG   # подробное логирование всего твоего пакета
-    org.springframework.security: INFO  # можно понизить уровень логов Spring Security, если много шума
+  expiration-ms: 3600000  # время жизни токена в миллисекундах (1 час)

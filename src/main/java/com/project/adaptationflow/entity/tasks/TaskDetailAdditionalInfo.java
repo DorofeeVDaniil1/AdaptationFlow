@@ -1,35 +1,33 @@
 package com.project.adaptationflow.entity.tasks;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
+import com.project.adaptationflow.entity.tasks.TaskDetail;
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.io.Serial;
-import java.util.UUID;
-
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "task_detail_additional_info", schema = "public")
+@Table(name = "task_detail_additional_info", indexes = {
+        @Index(name = "idx_task_detail_additional_info_task_detail_id", columnList = "task_detail_id")
+})
 public class TaskDetailAdditionalInfo extends StandardEntityUUID {
-    @Serial
-    private static final long serialVersionUID = 2010954072490194152L;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "task_detail_id")
+    @JoinColumn(name = "task_detail_id", nullable = false)
     private TaskDetail taskDetail;
 
+    @NotNull
     @Column(name = "document_url", nullable = false, length = Integer.MAX_VALUE)
     private String documentUrl;
 
-    @Column(name = "category", nullable = false)
+    @NotNull
+    @Column(name = "category", nullable = false, length = Integer.MAX_VALUE)
     private String category;
 
 }
