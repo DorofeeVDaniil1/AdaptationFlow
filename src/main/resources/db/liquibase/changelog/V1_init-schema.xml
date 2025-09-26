@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="1748185047780-1" author="dandy (generated)">
+        <createTable schemaName="public" tableName="achievement">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_achievement"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+            <column name="code" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-2" author="dandy (generated)">
+        <createTable schemaName="public" tableName="anketa">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_anketa"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="track_stage_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="difficulty_rating" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="satisfaction_rating" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-3" author="dandy (generated)">
+        <createTable schemaName="public" tableName="anketa_question_link">
+            <column name="anketa_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_anketa_question_link"/>
+            </column>
+            <column name="question_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_anketa_question_link"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-4" author="dandy (generated)">
+        <createTable schemaName="public" tableName="answer_option">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer_option"/>
+            </column>
+            <column name="question_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer_text" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-5" author="dandy (generated)">
+        <createTable schemaName="public" tableName="external_system">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_external_system"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-6" author="dandy (generated)">
+        <createTable schemaName="public" tableName="faq_entry">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_faq_entry"/>
+            </column>
+            <column name="question" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-7" author="dandy (generated)">
+        <createTable schemaName="public" tableName="integration_mapping">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_integration_mapping"/>
+            </column>
+            <column name="system_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="local_entity" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remote_entity" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-8" author="dandy (generated)">
+        <createTable schemaName="public" tableName="notification">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_notification"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sent_at" type="timestamp"/>
+            <column name="read" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-9" author="dandy (generated)">
+        <createTable schemaName="public" tableName="onboarding_track">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_onboarding_track"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-10" author="dandy (generated)">
+        <createTable schemaName="public" tableName="points_rule">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_points_rule"/>
+            </column>
+            <column name="entity_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="entity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-11" author="dandy (generated)">
+        <createTable schemaName="public" tableName="points_transaction">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_points_transaction"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="points_rule_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="anketa_id" type="UUID"/>
+            <column name="points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-12" author="dandy (generated)">
+        <createTable schemaName="public" tableName="practice">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_practice"/>
+            </column>
+            <column name="name" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="text"/>
+            <column name="start_date" type="DATE"/>
+            <column name="end_date" type="DATE"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-13" author="dandy (generated)">
+        <createTable schemaName="public" tableName="practice_report">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_practice_report"/>
+            </column>
+            <column name="practice_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="report" type="text"/>
+            <column name="submitted_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved_by" type="UUID"/>
+            <column name="approved_at" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-14" author="dandy (generated)">
+        <createTable schemaName="public" tableName="progress">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_progress"/>
+            </column>
+            <column name="detail_id" type="UUID"/>
+            <column name="completed_at" type="timestamp"/>
+            <column name="comment" type="text"/>
+            <column name="assignment_user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assignment_task" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-15" author="dandy (generated)">
+        <createTable schemaName="public" tableName="question_option">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question_option"/>
+            </column>
+            <column name="question_text" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-16" author="dandy (generated)">
+        <createTable schemaName="public" tableName="role">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-17" author="dandy (generated)">
+        <createTable schemaName="public" tableName="support_request">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_support_request"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="text"/>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answered_at" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-18" author="dandy (generated)">
+        <createTable schemaName="public" tableName="sys_user_role">
+            <column name="assigned_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_sys_user_role"/>
+            </column>
+            <column name="role_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_sys_user_role"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-19" author="dandy (generated)">
+        <createTable schemaName="public" tableName="sys_users">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_sys_users"/>
+            </column>
+            <column name="login" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="patronymic" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_login_date" type="timestamp"/>
+            <column name="user_level_id" type="UUID"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-20" author="dandy (generated)">
+        <createTable schemaName="public" tableName="task_detail">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_task_detail"/>
+            </column>
+            <column name="task_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-21" author="dandy (generated)">
+        <createTable schemaName="public" tableName="task_detail_additional_info">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_task_detail_additional_info"/>
+            </column>
+            <column name="task_detail_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+            <column name="document_url" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-22" author="dandy (generated)">
+        <createTable schemaName="public" tableName="tasks">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tasks"/>
+            </column>
+            <column name="track_stage_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired_time_task" type="timestamp"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-23" author="dandy (generated)">
+        <createTable schemaName="public" tableName="track_stage">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_track_stage"/>
+            </column>
+            <column name="onboarding_track_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="order_index" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-24" author="dandy (generated)">
+        <createTable schemaName="public" tableName="user_achievement">
+            <column name="awarded_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_achievement"/>
+            </column>
+            <column name="achievement_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_achievement"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-25" author="dandy (generated)">
+        <createTable schemaName="public" tableName="user_level">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_level"/>
+            </column>
+            <column name="title" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_points" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_points" type="INT"/>
+            <column name="description" type="text"/>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-26" author="dandy (generated)">
+        <createTable schemaName="public" tableName="user_onboarding_track">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_onboarding_track"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="track_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="started_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by" type="VARCHAR(50)"/>
+            <column name="update_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updated_by" type="VARCHAR(50)"/>
+            <column name="delete_ts" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-27" author="dandy (generated)">
+        <createTable schemaName="public" tableName="user_track_stage">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_track_stage"/>
+            </column>
+            <column name="uot_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stage_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unlocked_at" type="timestamp"/>
+            <column name="completed_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-28" author="dandy (generated)">
+        <createTable schemaName="public" tableName="users_tasks_link">
+            <column name="assigned_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="timestamp"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users_tasks_link"/>
+            </column>
+            <column name="task_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users_tasks_link"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1748185047780-29" author="dandy (generated)">
+        <createIndex indexName="achievement_code_key" schemaName="public" tableName="achievement" unique="true">
+            <column name="code"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-35" author="dandy (generated)">
+        <createIndex indexName="role_name_key" schemaName="public" tableName="role" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-36" author="dandy (generated)">
+        <createIndex indexName="uq_points_rule" schemaName="public" tableName="points_rule" unique="true">
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-37" author="dandy (generated)">
+        <createIndex indexName="uq_ts_order" schemaName="public" tableName="track_stage" unique="true">
+            <column name="onboarding_track_id"/>
+            <column name="order_index"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-38" author="dandy (generated)">
+        <createIndex indexName="uq_uot" schemaName="public" tableName="user_onboarding_track" unique="true">
+            <column name="user_id"/>
+            <column name="track_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-39" author="dandy (generated)">
+        <createIndex indexName="uq_uts" schemaName="public" tableName="user_track_stage" unique="true">
+            <column name="uot_id"/>
+            <column name="stage_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-40" author="dandy (generated)">
+        <createIndex indexName="user_level_title_key" schemaName="public" tableName="user_level" unique="true">
+            <column name="title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-41" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="anketa" baseTableSchemaName="public"
+                                 constraintName="FK_ANKETA_ON_TASK" referencedColumnNames="id"
+                                 referencedTableName="tasks" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-42" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="track_stage_id" baseTableName="anketa" baseTableSchemaName="public"
+                                 constraintName="FK_ANKETA_ON_TRACK_STAGE" referencedColumnNames="id"
+                                 referencedTableName="track_stage" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-43" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="anketa" baseTableSchemaName="public"
+                                 constraintName="FK_ANKETA_ON_USER" referencedColumnNames="id"
+                                 referencedTableName="sys_users" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-44" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="anketa_id" baseTableName="anketa_question_link"
+                                 baseTableSchemaName="public" constraintName="FK_ANKETA_QUESTION_LINK_ON_ANKETA"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="anketa"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-45" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="anketa_question_link"
+                                 baseTableSchemaName="public" constraintName="FK_ANKETA_QUESTION_LINK_ON_QUESTION"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="question_option"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-46" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="answer_option"
+                                 baseTableSchemaName="public" constraintName="FK_ANSWER_OPTION_ON_QUESTION"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="question_option"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-47" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="system_id" baseTableName="integration_mapping"
+                                 baseTableSchemaName="public" constraintName="FK_INTEGRATION_MAPPING_ON_SYSTEM"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="external_system"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-48" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notification" baseTableSchemaName="public"
+                                 constraintName="FK_NOTIFICATION_ON_USER" onDelete="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="sys_users" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-49" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="anketa_id" baseTableName="points_transaction"
+                                 baseTableSchemaName="public" constraintName="FK_POINTS_TRANSACTION_ON_ANKETA"
+                                 referencedColumnNames="id" referencedTableName="anketa"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-50" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="points_rule_id" baseTableName="points_transaction"
+                                 baseTableSchemaName="public" constraintName="FK_POINTS_TRANSACTION_ON_POINTS_RULE"
+                                 referencedColumnNames="id" referencedTableName="points_rule"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-51" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="points_transaction"
+                                 baseTableSchemaName="public" constraintName="FK_POINTS_TRANSACTION_ON_USER"
+                                 referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+
+        <createIndex indexName="idx_points_transaction_user_id" schemaName="public" tableName="points_transaction">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-52" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="practice_id" baseTableName="practice_report"
+                                 baseTableSchemaName="public" constraintName="FK_PRACTICE_REPORT_ON_PRACTICE"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="practice"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-53" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="practice_report" baseTableSchemaName="public"
+                                 constraintName="FK_PRACTICE_REPORT_ON_USER" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-54" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="assignment_user,assignment_task" baseTableName="progress"
+                                 baseTableSchemaName="public" constraintName="FK_PROGRESS_ON_ASUSASTA"
+                                 onDelete="CASCADE" referencedColumnNames="user_id,task_id"
+                                 referencedTableName="users_tasks_link" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-55" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="detail_id" baseTableName="progress" baseTableSchemaName="public"
+                                 constraintName="FK_PROGRESS_ON_DETAIL" referencedColumnNames="id"
+                                 referencedTableName="task_detail" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-56" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="support_request" baseTableSchemaName="public"
+                                 constraintName="FK_SUPPORT_REQUEST_ON_USER" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-57" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_level_id" baseTableName="sys_users" baseTableSchemaName="public"
+                                 constraintName="FK_SYS_USERS_ON_USER_LEVEL" referencedColumnNames="id"
+                                 referencedTableName="user_level" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-58" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="sys_user_role" baseTableSchemaName="public"
+                                 constraintName="FK_SYS_USER_ROLE_ON_ROLE" onDelete="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="role"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-59" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sys_user_role" baseTableSchemaName="public"
+                                 constraintName="FK_SYS_USER_ROLE_ON_USER" onDelete="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="sys_users" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-60" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="track_stage_id" baseTableName="tasks" baseTableSchemaName="public"
+                                 constraintName="FK_TASKS_ON_TRACK_STAGE" onDelete="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="track_stage" referencedTableSchemaName="public"/>
+
+        <createIndex indexName="idx_task_stage_id" schemaName="public" tableName="tasks">
+            <column name="track_stage_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-61" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="task_detail_id" baseTableName="task_detail_additional_info"
+                                 baseTableSchemaName="public"
+                                 constraintName="FK_TASK_DETAIL_ADDITIONAL_INFO_ON_TASK_DETAIL" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="task_detail"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-62" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="task_detail" baseTableSchemaName="public"
+                                 constraintName="FK_TASK_DETAIL_ON_TASK" onDelete="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="tasks" referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-63" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="onboarding_track_id" baseTableName="track_stage"
+                                 baseTableSchemaName="public" constraintName="FK_TRACK_STAGE_ON_ONBOARDING_TRACK"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="onboarding_track"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-64" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="users_tasks_link" baseTableSchemaName="public"
+                                 constraintName="FK_USERS_TASKS_LINK_ON_TASK" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="tasks"
+                                 referencedTableSchemaName="public"/>
+
+        <createIndex indexName="idx_users_tasks_link_task_id" schemaName="public" tableName="users_tasks_link">
+            <column name="task_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-65" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="users_tasks_link" baseTableSchemaName="public"
+                                 constraintName="FK_USERS_TASKS_LINK_ON_USER" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+
+        <createIndex indexName="idx_users_tasks_link_user_id" schemaName="public" tableName="users_tasks_link">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1748185047780-66" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="achievement_id" baseTableName="user_achievement"
+                                 baseTableSchemaName="public" constraintName="FK_USER_ACHIEVEMENT_ON_ACHIEVEMENT"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="achievement"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-67" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_achievement" baseTableSchemaName="public"
+                                 constraintName="FK_USER_ACHIEVEMENT_ON_USER" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-68" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="track_id" baseTableName="user_onboarding_track"
+                                 baseTableSchemaName="public" constraintName="FK_USER_ONBOARDING_TRACK_ON_TRACK"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="onboarding_track"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-69" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_onboarding_track"
+                                 baseTableSchemaName="public" constraintName="FK_USER_ONBOARDING_TRACK_ON_USER"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="sys_users"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-70" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="stage_id" baseTableName="user_track_stage"
+                                 baseTableSchemaName="public" constraintName="FK_USER_TRACK_STAGE_ON_STAGE"
+                                 onDelete="CASCADE" referencedColumnNames="id" referencedTableName="track_stage"
+                                 referencedTableSchemaName="public"/>
+    </changeSet>
+    <changeSet id="1748185047780-71" author="dandy (generated)">
+        <addForeignKeyConstraint baseColumnNames="uot_id" baseTableName="user_track_stage" baseTableSchemaName="public"
+                                 constraintName="FK_USER_TRACK_STAGE_ON_UOT" onDelete="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="user_onboarding_track"
+                                 referencedTableSchemaName="public"/>
+
+        <createIndex indexName="idx_user_track_stage_uot_id" schemaName="public" tableName="user_track_stage">
+            <column name="uot_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

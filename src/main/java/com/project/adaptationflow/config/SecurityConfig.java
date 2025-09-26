@@ -33,12 +33,13 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/rest/**").hasRole("ADMIN")
+                        .requestMatchers("/mobile/**").hasRole("USER")
+                        .requestMatchers("/mobile/mentor").hasRole("MENTOR")
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        http.cors(Customizer.withDefaults());
         return http.build();
     }
 

@@ -1,29 +1,31 @@
-package com.project.adaptationflow.entity.gamification;
+package com.project.adaptationflow.entity.gamefication;
 
 import com.project.adaptationflow.entity.StandardEntityUUID;
-import com.project.adaptationflow.entity.user.SysUser;
+import com.project.adaptationflow.entity.person.SysUser;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import java.io.Serial;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
-@Table(name = "user_level", uniqueConstraints = {
-        @UniqueConstraint(name = "uq_user_level_title", columnNames = {"title"})
+@Table(name = "user_level", schema = "public", indexes = {
+        @Index(name = "user_level_title_key", columnList = "title", unique = true)
 })
 public class UserLevel extends StandardEntityUUID {
-    @Size(max = 100)
-    @NotNull
+    @Serial
+    private static final long serialVersionUID = -7629891876657492716L;
+
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @NotNull
     @Column(name = "min_points", nullable = false)
     private Integer minPoints;
 
@@ -33,8 +35,7 @@ public class UserLevel extends StandardEntityUUID {
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "user_level_id")
+    @OneToMany(mappedBy = "userLevel")
     private Set<SysUser> sysUsers = new LinkedHashSet<>();
 
 }

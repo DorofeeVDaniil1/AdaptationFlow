@@ -1,20 +1,20 @@
 package com.project.adaptationflow.config;
 
-import com.project.adaptationflow.entity.user.Role;
-import com.project.adaptationflow.entity.user.SysUser;
-import com.project.adaptationflow.entity.user.SysUserRoleLink;
+import com.project.adaptationflow.entity.person.Role;
+import com.project.adaptationflow.entity.person.SysUser;
+import com.project.adaptationflow.entity.person.SysUserRole;
 import com.project.adaptationflow.repo.SysUserRepository;
-import org.springframework.security.core.GrantedAuthority;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
     private final SysUserRepository userRepository;
 
@@ -23,23 +23,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         SysUser user = userRepository.findByLogin(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
-
-        // Загружаем роли через join-сущность
-        Set<GrantedAuthority> authorities = user.getRoleLinks().stream()
-                .map(SysUserRoleLink::getRole)                  // достаём Role
-                .map(Role::getName)                             // достаём имя роли
-                .map(SimpleGrantedAuthority::new)               // превращаем в GrantedAuthority
-                .collect(Collectors.toSet());
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),
                 user.getPasswordHash(),
-                user.getIsActive(),
-                true, true, true,
-                authorities);
+                user.getSysUserRoles().stream()
+                        .map(SysUserRole::getRole)                  // получаем Role из связки
+                        .map(Role::getName)                         // имя роли, например "ROLE_ADMIN"
+                        .map(SimpleGrantedAuthority::new)          // преобразуем в GrantedAuthority
+                        .collect(Collectors.toList())
+        );
     }
-
 }
